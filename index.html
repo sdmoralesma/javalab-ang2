@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Javalab | An Open Source Web Lab</title>
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon.ico">
+
+    <meta charset="UTF-8">
+    <meta name="description"
+          content="Javalab is an online community to create, collaborate on and share your development ideas with JVM languages">
+    <meta name="keywords"
+          content="javalab, java lab, java, java code online, java laboratory, java web online, java compile online,
+          java run online, online java compiler, online ide, learn java, learn programming online,
+          java programming online, run java code online, run java code, execute java code">
+    <meta name="author" content="Sergio Morales">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    <!--styles-->
+    <link href="node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="assets/css/base.css" rel="stylesheet"/>
+    <link href="assets/css/desktop.css" rel="stylesheet"/>
+    <link href="assets/css/tablet.css" rel="stylesheet"/>
+    <link href="assets/css/mobile.css" rel="stylesheet"/>
+
+
+    <!-- 1. Load libraries -->
+    <!-- IE required polyfills, in this exact order -->
+    <script src="node_modules/es6-shim/es6-shim.min.js"></script>
+    <script src="node_modules/systemjs/dist/system-polyfills.js"></script>
+
+    <script src="node_modules/angular2/bundles/angular2-polyfills.js"></script>
+    <script src="node_modules/systemjs/dist/system.src.js"></script>
+    <script src="node_modules/rxjs/bundles/Rx.js"></script>
+    <script src="node_modules/angular2/bundles/angular2.dev.js"></script>
+
+    <!-- 2. Configure SystemJS -->
+    <script>
+        System.config({
+            packages: {
+                app: {
+                    format: 'register',
+                    defaultExtension: 'js'
+                }
+            }
+        });
+        System.import('app/boot')
+                .then(null, console.error.bind(console));
+    </script>
+
+</head>
+
+<!-- 3. Display the application -->
+<body>
+
+<my-app>Loading...</my-app>
+
+<script src="node_modules/jquery/dist/jquery.js"></script>
+<script src="node_modules/bootstrap/dist/js/bootstrap.js"></script>
+
+</body>
+
+</html>
+

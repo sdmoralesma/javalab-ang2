@@ -1,0 +1,72 @@
+<nav id="ext-nav" class="navbar navbar-default" role="navigation">
+    <div class="container-fluid">
+
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#collapsable-menu">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+
+            <a class="navbar-brand" href="/">Javalab</a>
+        </div>
+
+        <form class="navbar-form navbar-left">
+            <div class="input-group">
+                <div class="form-group">
+                    <!--<angucomplete-alt id="search-input"-->
+                                      <!--pause="100"-->
+                                      <!--placeholder="Select class or test"-->
+                                      <!--initial-value="initialValue"-->
+                                      <!--selected-object="selectedFile"-->
+                                      <!--local-data="javaClasses"-->
+                                      <!--search-fields="name, path"-->
+                                      <!--title-field="name"-->
+                                      <!--description-field="path"-->
+                                      <!--minlength="0"-->
+                                      <!--auto-match="true"-->
+                                      <!--match-class="highlight"-->
+                                      <!--input-class="form-control form-control-small"></angucomplete-alt>-->
+                </div>
+                <div class="input-group-btn">
+                    <button id="run-btn" class="btn btn-default " data-ng-click="runCode()">
+                        <span class="glyphicon glyphicon-play"></span>
+                    </button>
+                    <button id="test-btn" class="btn btn-default" data-ng-click="runTests()">
+                        <span class="glyphicon glyphicon-check"></span>
+                    </button>
+                </div>
+            </div>
+        </form>
+
+        <form class="navbar-form navbar-left">
+            <button id="save-btn" class="btn btn-primary" data-ng-click="save()">
+                <span class="glyphicon glyphicon-floppy-disk"></span>
+            </button>
+
+            <div class="btn-group">
+                <button id="new-btn" class="btn btn-success" data-ng-click="new()">
+                    <span class="glyphicon glyphicon-file"></span>
+                </button>
+                <button class="btn btn-success dropdown-toggle" data-toggle="dropdown">
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a href="#">Java</a></li>
+                    <li><a href="#">Groovy</a></li>
+                    <li><a href="#">Scala</a></li>
+                </ul>
+            </div>
+        </form>
+
+        <div class="collapse navbar-collapse" id="collapsable-menu">
+            <form class="navbar-form navbar-right ">
+                <a href="https://github.com/sdmoralesma/javalab/wiki" target="_blank">
+                    <img src="../../assets/images/github-mark.png" alt="javalab wiki">
+                </a>
+            </form>
+        </div>
+    </div>
+</nav>
