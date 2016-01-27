@@ -1,3 +1,7 @@
+*.js
+*.js.map
+
+
 target/
 *.class
 *.pem
