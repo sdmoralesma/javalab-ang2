@@ -1,4 +1,4 @@
-System.register(['angular2/core', './nav-bar/navbar.component', './hero-detail.component', './hero.service'], function(exports_1) {
+System.register(['angular2/core', './nav-bar/navbar.component', "./tags/tags.component", './javalab.service', "./description/description.component", "./filemanager/filemanager.component", "./editor/editor.component", "./console/console.component"], function(exports_1) {
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,7 +8,7 @@ System.register(['angular2/core', './nav-bar/navbar.component', './hero-detail.c
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, navbar_component_1, hero_detail_component_1, hero_service_1;
+    var core_1, navbar_component_1, tags_component_1, javalab_service_1, description_component_1, filemanager_component_1, editor_component_1, console_component_1;
     var AppComponent;
     return {
         setters:[
@@ -18,11 +18,23 @@ System.register(['angular2/core', './nav-bar/navbar.component', './hero-detail.c
             function (navbar_component_1_1) {
                 navbar_component_1 = navbar_component_1_1;
             },
-            function (hero_detail_component_1_1) {
-                hero_detail_component_1 = hero_detail_component_1_1;
+            function (tags_component_1_1) {
+                tags_component_1 = tags_component_1_1;
             },
-            function (hero_service_1_1) {
-                hero_service_1 = hero_service_1_1;
+            function (javalab_service_1_1) {
+                javalab_service_1 = javalab_service_1_1;
+            },
+            function (description_component_1_1) {
+                description_component_1 = description_component_1_1;
+            },
+            function (filemanager_component_1_1) {
+                filemanager_component_1 = filemanager_component_1_1;
+            },
+            function (editor_component_1_1) {
+                editor_component_1 = editor_component_1_1;
+            },
+            function (console_component_1_1) {
+                console_component_1 = console_component_1_1;
             }],
         execute: function() {
             AppComponent = (function () {
@@ -31,24 +43,18 @@ System.register(['angular2/core', './nav-bar/navbar.component', './hero-detail.c
                     this.title = 'Tour of Heroes';
                 }
                 AppComponent.prototype.getHeroes = function () {
-                    var _this = this;
-                    this._heroService.getHeroes().then(function (heroes) { return _this.heroes = heroes; });
                 };
                 AppComponent.prototype.ngOnInit = function () {
                     this.getHeroes();
                 };
-                AppComponent.prototype.onSelect = function (hero) {
-                    this.selectedHero = hero;
-                };
                 AppComponent = __decorate([
                     core_1.Component({
-                        selector: 'my-app',
-                        template: "\n\n    <nav-bar> the nav bar</nav-bar>\n    <h1>{{title}}</h1>\n    <h2>My Heroes</h2>\n    <ul class=\"heroes\">\n      <li *ngFor=\"#hero of heroes\"\n        [class.selected]=\"hero === selectedHero\"\n        (click)=\"onSelect(hero)\">\n        <span class=\"badge\">{{hero.id}}</span> {{hero.name}}\n      </li>\n    </ul>\n    <my-hero-detail [hero]=\"selectedHero\"></my-hero-detail>\n  ",
-                        styles: ["\n    .selected {\n      background-color: #CFD8DC !important;\n      color: white;\n    }\n    .heroes {\n      margin: 0 0 2em 0;\n      list-style-type: none;\n      padding: 0;\n      width: 10em;\n    }\n    .heroes li {\n      cursor: pointer;\n      position: relative;\n      left: 0;\n      background-color: #EEE;\n      margin: .5em;\n      padding: .3em 0em;\n      height: 1.6em;\n      border-radius: 4px;\n    }\n    .heroes li.selected:hover {\n      color: white;\n    }\n    .heroes li:hover {\n      color: #607D8B;\n      background-color: #EEE;\n      left: .1em;\n    }\n    .heroes .text {\n      position: relative;\n      top: -3px;\n    }\n    .heroes .badge {\n      display: inline-block;\n      font-size: small;\n      color: white;\n      padding: 0.8em 0.7em 0em 0.7em;\n      background-color: #607D8B;\n      line-height: 1em;\n      position: relative;\n      left: -1px;\n      top: -4px;\n      height: 1.8em;\n      margin-right: .8em;\n      border-radius: 4px 0px 0px 4px;\n    }\n  "],
-                        directives: [hero_detail_component_1.HeroDetailComponent, navbar_component_1.NavBarComponent],
-                        providers: [hero_service_1.HeroService]
+                        selector: 'javalab-app',
+                        templateUrl: './app/app.html',
+                        directives: [description_component_1.DescriptionComponent, filemanager_component_1.FileManagerComponent, navbar_component_1.NavBarComponent, tags_component_1.TagsComponent, editor_component_1.EditorComponent, console_component_1.ConsoleComponent],
+                        providers: [javalab_service_1.JavalabService]
                     }), 
-                    __metadata('design:paramtypes', [hero_service_1.HeroService])
+                    __metadata('design:paramtypes', [javalab_service_1.JavalabService])
                 ], AppComponent);
                 return AppComponent;
             })();
