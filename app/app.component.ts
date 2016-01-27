@@ -1,7 +1,7 @@
-import {Component, OnInit} from 'angular2/core';
-import {NavBarComponent} from './nav-bar/navbar.component';
+import {Component, OnInit} from "angular2/core";
+import {NavBarComponent} from "./nav-bar/navbar.component";
 import {TagsComponent} from "./tags/tags.component";
-import {JavalabService} from './javalab.service';
+import {JavalabService} from "./javalab.service";
 import {DescriptionComponent} from "./description/description.component";
 import {FileManagerComponent} from "./filemanager/filemanager.component";
 import {EditorComponent} from "./editor/editor.component";
@@ -18,14 +18,14 @@ export class AppComponent implements OnInit {
     private data:any;
 
     constructor(private _javalabService:JavalabService) {
-        //this.WindowBeforeUnloadWarning();
+        //this.attachWindowEvents(); //not now
 
     }
 
-    private WindowBeforeUnloadWarning() {
+    private attachWindowEvents() {
         window.onbeforeunload = function (e) {
             e = e || window.event;
-            e.preventDefault = true;
+            e.preventDefault();
             e.cancelBubble = true;
             e.returnValue = 'test';
         };
