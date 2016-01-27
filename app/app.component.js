@@ -38,11 +38,23 @@ System.register(['angular2/core', './nav-bar/navbar.component', "./tags/tags.com
             }],
         execute: function() {
             AppComponent = (function () {
-                function AppComponent(_heroService) {
-                    this._heroService = _heroService;
+                function AppComponent(_javalabService) {
+                    //this.WindowBeforeUnloadWarning();
+                    this._javalabService = _javalabService;
                     this.title = 'Tour of Heroes';
                 }
+                AppComponent.prototype.WindowBeforeUnloadWarning = function () {
+                    window.onbeforeunload = function (e) {
+                        e = e || window.event;
+                        e.preventDefault = true;
+                        e.cancelBubble = true;
+                        e.returnValue = 'test';
+                    };
+                };
+                ;
                 AppComponent.prototype.getHeroes = function () {
+                    this.data = this._javalabService.getHeroes();
+                    console.log("message from server:", JSON.stringify(this.data));
                 };
                 AppComponent.prototype.ngOnInit = function () {
                     this.getHeroes();

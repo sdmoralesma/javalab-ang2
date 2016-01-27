@@ -15,11 +15,25 @@ import {ConsoleComponent} from "./console/console.component";
 })
 export class AppComponent implements OnInit {
     public title = 'Tour of Heroes';
+    private data:any;
 
-    constructor(private _heroService:JavalabService) {
+    constructor(private _javalabService:JavalabService) {
+        //this.WindowBeforeUnloadWarning();
+
     }
 
+    private WindowBeforeUnloadWarning() {
+        window.onbeforeunload = function (e) {
+            e = e || window.event;
+            e.preventDefault = true;
+            e.cancelBubble = true;
+            e.returnValue = 'test';
+        };
+    };
+
     getHeroes() {
+        this.data = this._javalabService.getHeroes();
+        console.log("message from server:", JSON.stringify(this.data));
     }
 
     ngOnInit() {

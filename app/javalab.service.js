@@ -22,15 +22,15 @@ System.register(['./mock-response', 'angular2/core'], function(exports_1) {
             JavalabService = (function () {
                 function JavalabService() {
                 }
-                JavalabService.getHeroes = function () {
-                    return Promise.resolve(mock_response_1.MockResponse);
+                JavalabService.prototype.getHeroes = function () {
+                    return mock_response_1.MockResponse;
                 };
                 // See the "Take it slow" appendix
                 JavalabService.prototype.getHeroesSlowly = function () {
                     return new Promise(function (resolve) {
-                        return setTimeout(function () { return resolve(mock_response_1.MockResponse); }, 1000);
-                    } // 1 seconds
-                     // 1 seconds
+                        return setTimeout(function () { return resolve(mock_response_1.MockResponse); }, 2000);
+                    } // 2 seconds
+                     // 2 seconds
                     );
                 };
                 JavalabService = __decorate([
