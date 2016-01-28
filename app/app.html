@@ -1,18 +1,19 @@
-<nav-bar> the nav bar</nav-bar>
+<div [style.height.px]="height" (window:resize)="onResize($event)">
 
-<div class="container-fluid">
-    <div id="ext-libraries" class="col-sm-12 col-md-3">
-        <filemanager> filemanager</filemanager>
+    <nav-bar> the nav bar</nav-bar>
 
-        <description> description</description>
+    <div class="container-fluid">
+        <div id="ext-libraries" class="col-sm-12 col-md-3">
+            <filemanager></filemanager>
 
-        <tags> tags panel</tags>
+            <description></description>
+
+            <tags></tags>
+        </div>
+
+        <editor></editor>
+
+        <console></console>
     </div>
 
-    <editor> editor</editor>
-
-    <console> console</console>
-
 </div>
-
-

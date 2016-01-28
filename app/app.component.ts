@@ -1,4 +1,4 @@
-import {Component, OnInit} from "angular2/core";
+import {Component, OnInit, Query, QueryList, ElementRef} from "angular2/core";
 import {NavBarComponent} from "./nav-bar/navbar.component";
 import {TagsComponent} from "./tags/tags.component";
 import {JavalabService} from "./javalab.service";
@@ -14,12 +14,16 @@ import {ConsoleComponent} from "./console/console.component";
     providers: [JavalabService]
 })
 export class AppComponent implements OnInit {
-    public title = 'Tour of Heroes';
     private data:any;
+    height:number;
+    childList:QueryList<ElementRef>;
+    console:QueryList<ConsoleComponent>;
 
-    constructor(private _javalabService:JavalabService) {
+    constructor(private _javalabService:JavalabService,
+                @Query(ConsoleComponent) console:QueryList<ConsoleComponent>) {
+
+        this.console = console;
         //this.attachWindowEvents(); //not now
-
     }
 
     private attachWindowEvents() {
@@ -27,7 +31,7 @@ export class AppComponent implements OnInit {
             e = e || window.event;
             e.preventDefault();
             e.cancelBubble = true;
-            e.returnValue = 'test';
+            e.returnValue = 'Code not saved!';
         };
     };
 
@@ -38,6 +42,10 @@ export class AppComponent implements OnInit {
 
     ngOnInit() {
         this.getHeroes();
+    }
+
+    onResize(event) {
+        console.log("onResize: childList: ", this.console.length);
     }
 
 }
