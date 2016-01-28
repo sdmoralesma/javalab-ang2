@@ -1,4 +1,4 @@
-import {Component, OnInit, Query, QueryList, ElementRef} from "angular2/core";
+import {Component, OnInit, ViewChild} from "angular2/core";
 import {NavBarComponent} from "./nav-bar/navbar.component";
 import {TagsComponent} from "./tags/tags.component";
 import {JavalabService} from "./javalab.service";
@@ -16,13 +16,11 @@ import {ConsoleComponent} from "./console/console.component";
 export class AppComponent implements OnInit {
     private data:any;
     height:number;
-    childList:QueryList<ElementRef>;
-    console:QueryList<ConsoleComponent>;
 
-    constructor(private _javalabService:JavalabService,
-                @Query(ConsoleComponent) console:QueryList<ConsoleComponent>) {
+    @ViewChild(ConsoleComponent)
+    console:ConsoleComponent;
 
-        this.console = console;
+    constructor(private _javalabService:JavalabService) {
         //this.attachWindowEvents(); //not now
     }
 
@@ -45,7 +43,7 @@ export class AppComponent implements OnInit {
     }
 
     onResize(event) {
-        console.log("onResize: childList: ", this.console.length);
+        console.log("onResize: console=", this.console);
     }
 
 }
