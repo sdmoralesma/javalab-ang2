@@ -20,6 +20,12 @@ export class AppComponent implements OnInit {
     @ViewChild(ConsoleComponent)
     console:ConsoleComponent;
 
+    @ViewChild(EditorComponent)
+    editor:EditorComponent;
+
+    @ViewChild(NavBarComponent)
+    navBar:NavBarComponent;
+
     constructor(private _javalabService:JavalabService) {
         //this.attachWindowEvents(); //not now
     }
@@ -44,6 +50,26 @@ export class AppComponent implements OnInit {
 
     onResize(event) {
         console.log("onResize: console=", this.console);
+        console.log("this.navBar.height=", this.navBar.height);
+
+        var minWidthDesktop = 980;
+        if (window.outerWidth < minWidthDesktop) {
+            return;
+        }
+
+        var windowHeight = window.outerHeight;
+        var extNavHeight = this.navBar.height;
+        //  Define height for each element based on %
+        var codeEditorHeight = (windowHeight * 75 / 100) - extNavHeight;
+        var consoleHeight = (windowHeight * 25 / 100) - extNavHeight;
+
+        // resize elements
+        //$('#code-editor').height(codeEditorHeight);
+        //$('#console').height(consoleHeight);
+
+        this.editor.height = 1000;
+        this.console.height = 1000;
+
     }
 
 }

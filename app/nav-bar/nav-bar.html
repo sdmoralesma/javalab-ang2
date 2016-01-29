@@ -1,4 +1,4 @@
-<nav id="ext-nav" class="navbar navbar-default" role="navigation">
+<nav [style.height.px]="height" (window:resize)="onResize($event)" id="ext-nav" class="navbar navbar-default" role="navigation">
     <div class="container-fluid">
 
         <div class="navbar-header">

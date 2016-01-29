@@ -5,5 +5,6 @@ import {Component} from "angular2/core";
     templateUrl: './app/console/console.html'
 })
 export class ConsoleComponent {
+    height:number;
 
 }
