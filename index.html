@@ -24,14 +24,11 @@
 
 
     <!-- 1. Load libraries -->
-    <!-- IE required polyfills, in this exact order -->
-    <script src="node_modules/es6-shim/es6-shim.min.js"></script>
-    <script src="node_modules/systemjs/dist/system-polyfills.js"></script>
-
     <script src="node_modules/angular2/bundles/angular2-polyfills.js"></script>
-    <script src="node_modules/systemjs/dist/system.src.js"></script>
+    <script src="node_modules/systemjs/dist/system.js"></script>
+    <script src="node_modules/typescript/lib/typescript.js"></script>
     <script src="node_modules/rxjs/bundles/Rx.js"></script>
-    <script src="node_modules/angular2/bundles/angular2.dev.js"></script>
+    <script src="node_modules/angular2/bundles/angular2.js"></script>
 
     <!-- 2. Configure SystemJS -->
     <script>
@@ -43,7 +40,7 @@
                 }
             }
         });
-        System.import('app/boot').then(null, console.error.bind(console));
+        System.import('app/boot').catch(console.error.bind(console));
     </script>
 
 </head>
@@ -51,10 +48,10 @@
 <!-- 3. Display the application -->
 <body>
 
-<javalab-app> Loading... </javalab-app>
+<javalab-app>Loading...</javalab-app>
 
-<script src="node_modules/jquery/dist/jquery.js"></script>
-<script src="node_modules/bootstrap/dist/js/bootstrap.js"></script>
+<!--<script src="node_modules/jquery/dist/jquery.js"></script>-->
+<!--<script src="node_modules/bootstrap/dist/js/bootstrap.js"></script>-->
 
 </body>
 
