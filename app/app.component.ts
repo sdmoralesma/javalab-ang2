@@ -31,7 +31,7 @@ export class AppComponent implements OnInit {
     }
 
     private attachWindowEvents() {
-        window.onbeforeunload = function (e) {
+        window.onbeforeunload = (e) => {
             e = e || window.event;
             e.preventDefault();
             e.cancelBubble = true;

@@ -22,13 +22,12 @@
     <link href="assets/css/tablet.css" rel="stylesheet"/>
     <link href="assets/css/mobile.css" rel="stylesheet"/>
 
-
     <!-- 1. Load libraries -->
     <script src="node_modules/angular2/bundles/angular2-polyfills.js"></script>
-    <script src="node_modules/systemjs/dist/system.js"></script>
+    <script src="node_modules/systemjs/dist/system.src.js"></script>
     <script src="node_modules/typescript/lib/typescript.js"></script>
     <script src="node_modules/rxjs/bundles/Rx.js"></script>
-    <script src="node_modules/angular2/bundles/angular2.js"></script>
+    <script src="node_modules/angular2/bundles/angular2.dev.js"></script>
 
     <!-- 2. Configure SystemJS -->
     <script>
@@ -38,9 +37,12 @@
                     format: 'register',
                     defaultExtension: 'js'
                 }
+            },
+            map: {
+                'angular2/src/platform/browser/ruler': 'node_modules/angular2/src/platform/browser/ruler.js'
             }
         });
-        System.import('app/boot').catch(console.error.bind(console));
+        System.import('app/boot').then(null, console.error.bind(console));
     </script>
 
 </head>

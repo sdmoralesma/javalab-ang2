@@ -1,7 +1,5 @@
 import {Component, ElementRef, OnInit} from "angular2/core";
-//import {Rectangle, Ruler}  from "angular2/src/platform/browser/ruler";
-
-//import {Ruler, Rectangle} from "https://raw.githubusercontent.com/angular/angular/master/modules/angular2/src/platform/browser/ruler.ts";
+import {Ruler, Rectangle} from "angular2/src/platform/browser/ruler";
 import * as browser from "angular2/platform/browser";
 
 
@@ -10,23 +8,18 @@ import * as browser from "angular2/platform/browser";
     templateUrl: './app/nav-bar/nav-bar.html',
     providers: [ElementRef]
 })
-export class NavBarComponent {
+export class NavBarComponent implements OnInit {
     //height:number;
     element:ElementRef;
-    ruler:any;
+    ruler:Ruler;
     rect:any;
 
     constructor(element:ElementRef) {
         this.element = element;
         console.log("this.element", this.element);
 
-        var domAdapter = new browser.BrowserDomAdapter();
-        console.log("domAdapter", domAdapter);
-
-
-
-            //new Ruler(domAdapter);
-        this.ruler = null;
+        this.element = element;
+        this.ruler = new Ruler(new browser.BrowserDomAdapter());
         console.log("this.ruler", this.ruler);
 
         this.rect = {};
@@ -34,16 +27,20 @@ export class NavBarComponent {
     }
 
     ngOnInit() {
-        //var vm = this;
-        //var measure = this.ruler.measure(this.element);
-        //measure.then((rect) => {
-        //    console.log('Rect', rect);
-        //    vm.rect = rect;
-        //});
+        var vm = this;
+        var measure = this.ruler.measure(this.element);
+        measure.then((rect:Rectangle) => {
+            console.log('ngOnInit.Rect', rect.height);
+            vm.rect = rect;
+        });
     }
 
-    onResize(rect:any) {
-        //console.log("this.navBar.height.INNER=", this.height);
-        console.log("rect.height", rect.height);
+    onResize(rect:Rectangle) {
+        var vm = this;
+        var measure = this.ruler.measure(this.element);
+        measure.then((rect:Rectangle) => {
+            console.log('onResize.height=', rect.height);
+            vm.rect = rect;
+        });
     }
 }
