@@ -27,7 +27,7 @@ export class AppComponent implements OnInit {
     navBar:NavBarComponent;
 
     constructor(private _javalabService:JavalabService) {
-        //this.attachWindowEvents(); //not now
+        //this.attachWindowEvents(); //TODO: activate on prod
     }
 
     private attachWindowEvents() {
@@ -49,27 +49,20 @@ export class AppComponent implements OnInit {
     }
 
     onResize(event) {
-        console.log("onResize: console=", this.console);
-
-
         var minWidthDesktop = 980;
-        if (window.outerWidth < minWidthDesktop) {
+        if (window.innerWidth < minWidthDesktop) {
             return;
         }
 
-        //var windowHeight = window.outerHeight;
-        //var extNavHeight = this.navBar.height;
-        ////  Define height for each element based on %
-        //var codeEditorHeight = (windowHeight * 75 / 100) - extNavHeight;
-        //var consoleHeight = (windowHeight * 25 / 100) - extNavHeight;
+        var windowHeight = window.innerHeight;
+        var extNavHeight = this.navBar.height;
+        //  Define height for each element based on %
+        var codeEditorHeight = (windowHeight * 0.75) - extNavHeight;
+        var consoleHeight = (windowHeight * 0.25) - extNavHeight;
 
         // resize elements
-        //$('#code-editor').height(codeEditorHeight);
-        //$('#console').height(consoleHeight);
-
-        this.editor.height = 1000;
-        this.console.height = 1000;
-
+        this.editor.updateHeight(codeEditorHeight);
+        this.console.updateHeight(consoleHeight);
     }
 
 }

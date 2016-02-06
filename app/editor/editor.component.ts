@@ -1,4 +1,4 @@
-import {Component, Input} from "angular2/core";
+import {Component} from "angular2/core";
 
 @Component({
     selector: 'editor',
@@ -7,4 +7,7 @@ import {Component, Input} from "angular2/core";
 export class EditorComponent {
     height:number;
 
+    updateHeight(height:number) {
+        this.height = height;
+    }
 }
