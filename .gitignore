@@ -1,6 +1,6 @@
 *.js
 *.js.map
-
+*.log
 
 target/
 *.class
