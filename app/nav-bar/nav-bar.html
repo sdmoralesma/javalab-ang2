@@ -16,19 +16,9 @@
         <form class="navbar-form navbar-left">
             <div class="input-group">
                 <div class="form-group">
-                    <!--<angucomplete-alt id="search-input"-->
-                                      <!--pause="100"-->
-                                      <!--placeholder="Select class or test"-->
-                                      <!--initial-value="initialValue"-->
-                                      <!--selected-object="selectedFile"-->
-                                      <!--local-data="javaClasses"-->
-                                      <!--search-fields="name, path"-->
-                                      <!--title-field="name"-->
-                                      <!--description-field="path"-->
-                                      <!--minlength="0"-->
-                                      <!--auto-match="true"-->
-                                      <!--match-class="highlight"-->
-                                      <!--input-class="form-control form-control-small"></angucomplete-alt>-->
+                    <p-autoComplete [(value)]="country" [suggestions]="filteredCountriesSingle" (completeMethod)="filterCountrySingle($event)" field="name" [size]="30"
+                                    placeholder="Countries" [minLength]="1">
+                    </p-autoComplete>
                 </div>
                 <div class="input-group-btn">
                     <button id="run-btn" class="btn btn-default " data-ng-click="runCode()">
