@@ -22,8 +22,6 @@ export class FileManagerComponent {
             label: "string",
             data: "any",
             icon: "any",
-            expandedIcon: "any",
-            collapsedIcon: "any",
             leaf: true
         };
 
