@@ -16,8 +16,8 @@
         <form class="navbar-form navbar-left">
             <div class="input-group">
                 <div class="form-group">
-                    <p-autoComplete [(value)]="country" [suggestions]="filteredCountriesSingle" (completeMethod)="filterCountrySingle($event)" field="name" [size]="30"
-                                    placeholder="Countries" [minLength]="1">
+                    <p-autoComplete [(value)]="text" [suggestions]="results" (completeMethod)="search($event)"
+                                    [dropdown]="true" (onDropdownClick)="handleDropdown(event)">
                     </p-autoComplete>
                 </div>
                 <div class="input-group-btn">

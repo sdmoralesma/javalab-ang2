@@ -1,12 +1,14 @@
 import {Component, ElementRef, OnInit} from "angular2/core";
 import {Ruler, Rectangle} from "angular2/src/platform/browser/ruler";
 import * as browser from "angular2/platform/browser";
+import {AutoComplete} from "primeng/primeng";
 
 
 @Component({
     selector: 'nav-bar',
     templateUrl: './app/nav-bar/nav-bar.html',
-    providers: [ElementRef]
+    providers: [ElementRef],
+    directives: [AutoComplete]
 })
 export class NavBarComponent implements OnInit {
     height:number;
@@ -27,6 +29,8 @@ export class NavBarComponent implements OnInit {
             this.height = rect.height;
             vm.rect = rect;
         });
+
+        this.text = "my testing text";
     }
 
     onResize(rect:Rectangle) {
@@ -37,4 +41,21 @@ export class NavBarComponent implements OnInit {
             vm.rect = rect;
         });
     }
+
+
+    text:string;
+
+    results:string[];
+
+    search(event) {
+
+        this.results = ["asdf", "qwerty"];
+
+    }
+
+    handleDropdown(event) {
+        //event.query = current value in input field
+    }
+
+
 }
