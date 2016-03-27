@@ -31,13 +31,7 @@
     </div>
 
     <div class="panel-body">
-        <!--<div treecontrol class="tree-classic"-->
-        <!--tree-model="treedata"-->
-        <!--options="treeOptions"-->
-        <!--on-selection="showSelected(node)"-->
-        <!--expanded-nodes="expandedNodes"-->
-        <!--selected-node="selected">-->
-        <!--{{node.name}}-->
-        <!--</div>-->
+        <p-tree [value]="files" selectionMode="single" [(selection)]="selectedFile"
+                (onNodeSelect)="nodeSelect($event)" (onNodeUnselect)="nodeUnselect($event)"></p-tree>
     </div>
 </div>
