@@ -1,5 +1,5 @@
 import {Component} from "angular2/core";
-import {Tree, TreeNode, Message} from "primeng/primeng";
+import {Tree, TreeNode} from "primeng/primeng";
 
 @Component({
     selector: 'filemanager',
@@ -8,38 +8,59 @@ import {Tree, TreeNode, Message} from "primeng/primeng";
 })
 export class FileManagerComponent {
 
-    msgs: Message[];
+    files:TreeNode[];
 
-    files: TreeNode[];
+    selectedFile:TreeNode;
 
-    selectedFile: TreeNode;
+    debug:string;
 
-    constructor() { }
+    constructor() {
+    }
 
     ngOnInit() {
-        var myNode: MyNode;
-        myNode = {
-            label: "string",
-            data: "any",
-            icon: "any",
-            leaf: true
-        };
-
-        this.files = [myNode];
+        this.files = [
+            {
+                "label": "Documents",
+                "data": "Documents Folder",
+                "expandedIcon": "fa-folder-open",
+                "collapsedIcon": "fa-folder",
+                "children": [
+                    {
+                        "label": "Work",
+                        "data": "Work Folder",
+                        "expandedIcon": "fa-folder-open",
+                        "collapsedIcon": "fa-folder",
+                        "children": [
+                            {
+                                "label": "Expenses.doc",
+                                "icon": "fa-file-text-o",
+                                "data": "Expenses Document"
+                            },
+                            {
+                                "label": "Resume.doc",
+                                "icon": "fa-file-text-o",
+                                "data": "Resume Document"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ];
     }
 
     nodeSelect(event) {
-        this.msgs = [];
-        this.msgs.push({severity: 'info', summary: 'Node Selected', detail: event.node.label});
+        this.debug = "nodeSelect";
     }
 
     nodeUnselect(event) {
-        this.msgs = [];
-        this.msgs.push({severity: 'info', summary: 'Node Unselected', detail: event.node.label});
+        this.debug = "nodeUnSelect";
     }
 
-}
-
-class MyNode implements TreeNode {
+    nodeExpand(event) {
+        if (event.node) {
+            this.debug = event.node.label;
+            // this.nodeService.getLazyFiles().then(nodes => event.node.children = nodes);
+        }
+    }
 
 }

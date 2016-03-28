@@ -33,5 +33,7 @@
     <div class="panel-body">
         <p-tree [value]="files" selectionMode="single" [(selection)]="selectedFile"
                 (onNodeSelect)="nodeSelect($event)" (onNodeUnselect)="nodeUnselect($event)"></p-tree>
+        <!--Selected Node: {{selectedFile ? selectedFile.label : 'none'}}-->
+        <!--Debug: {{debug}}-->
     </div>
 </div>
