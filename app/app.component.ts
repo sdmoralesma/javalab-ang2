@@ -6,11 +6,12 @@ import {DescriptionComponent} from "./description/description.component";
 import {FileManagerComponent} from "./filemanager/filemanager.component";
 import {EditorComponent} from "./editor/editor.component";
 import {ConsoleComponent} from "./console/console.component";
+import {CodeMirrorComponent} from "./codemirror/codemirror.component";
 
 @Component({
     selector: 'javalab-app',
     templateUrl: './app/app.html',
-    directives: [DescriptionComponent, FileManagerComponent, NavBarComponent, TagsComponent, EditorComponent, ConsoleComponent],
+    directives: [DescriptionComponent, FileManagerComponent, NavBarComponent, TagsComponent, EditorComponent, ConsoleComponent, CodeMirrorComponent],
     providers: [JavalabService]
 })
 export class AppComponent implements OnInit {
