@@ -4,14 +4,13 @@ import {TagsComponent} from "./tags/tags.component";
 import {JavalabService} from "./javalab.service";
 import {DescriptionComponent} from "./description/description.component";
 import {FileManagerComponent} from "./filemanager/filemanager.component";
-import {EditorComponent} from "./editor/editor.component";
 import {ConsoleComponent} from "./console/console.component";
 import {CodeMirrorComponent} from "./codemirror/codemirror.component";
 
 @Component({
     selector: 'javalab-app',
     templateUrl: './app/app.html',
-    directives: [DescriptionComponent, FileManagerComponent, NavBarComponent, TagsComponent, EditorComponent, ConsoleComponent, CodeMirrorComponent],
+    directives: [DescriptionComponent, FileManagerComponent, NavBarComponent, TagsComponent, ConsoleComponent, CodeMirrorComponent],
     providers: [JavalabService]
 })
 export class AppComponent implements OnInit {
@@ -21,8 +20,8 @@ export class AppComponent implements OnInit {
     @ViewChild(ConsoleComponent)
     console:ConsoleComponent;
 
-    @ViewChild(EditorComponent)
-    editor:EditorComponent;
+    @ViewChild(CodeMirrorComponent)
+    editor:CodeMirrorComponent;
 
     @ViewChild(NavBarComponent)
     navBar:NavBarComponent;
@@ -50,6 +49,7 @@ export class AppComponent implements OnInit {
     }
 
     onResize(event) {
+        /*
         var minWidthDesktop = 980;
         if (window.innerWidth < minWidthDesktop) {
             return;
@@ -64,6 +64,7 @@ export class AppComponent implements OnInit {
         // resize elements
         this.editor.updateHeight(codeEditorHeight);
         this.console.updateHeight(consoleHeight);
+        */
     }
 
 }

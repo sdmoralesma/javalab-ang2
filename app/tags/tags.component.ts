@@ -6,4 +6,6 @@ import {Component} from "angular2/core";
 })
 export class TagsComponent {
 
+
+    //should be based on primeng -> autocomplete - Multiple
 }

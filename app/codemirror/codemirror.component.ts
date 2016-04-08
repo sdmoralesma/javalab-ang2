@@ -7,9 +7,7 @@ import {Component, OnInit, ElementRef, OnChanges, AfterViewInit} from "angular2/
 export class CodeMirrorComponent implements OnInit,OnChanges, AfterViewInit {
 
     height:number;
-
     editor:CodeMirror.Editor;
-
     editorNativeElement:any;
 
     constructor(elRef:ElementRef) {
