@@ -50,21 +50,21 @@ export class AppComponent implements OnInit {
 
     onResize(event) {
         /*
-        var minWidthDesktop = 980;
-        if (window.innerWidth < minWidthDesktop) {
-            return;
-        }
+         var minWidthDesktop = 980;
+         if (window.innerWidth < minWidthDesktop) {
+         return;
+         }
 
-        var windowHeight = window.innerHeight;
-        var extNavHeight = this.navBar.height;
-        //  Define height for each element based on %
-        var codeEditorHeight = (windowHeight * 0.75) - extNavHeight;
-        var consoleHeight = (windowHeight * 0.25) - extNavHeight;
+         var windowHeight = window.innerHeight;
+         var extNavHeight = this.navBar.height;
+         //  Define height for each element based on %
+         var codeEditorHeight = (windowHeight * 0.75) - extNavHeight;
+         var consoleHeight = (windowHeight * 0.25) - extNavHeight;
 
-        // resize elements
-        this.editor.updateHeight(codeEditorHeight);
-        this.console.updateHeight(consoleHeight);
-        */
+         // resize elements
+         this.editor.updateHeight(codeEditorHeight);
+         this.console.updateHeight(consoleHeight);
+         */
     }
 
 }
