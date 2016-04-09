@@ -4,15 +4,10 @@
     </div>
 
     <div class="panel-body">
-
-        <p-autoComplete [(value)]="countries" [suggestions]="filteredCountriesMultiple"
+        <p-autoComplete [(value)]="countries"  [suggestions]="filteredCountriesMultiple"
                         (completeMethod)="filterCountryMultiple($event)"
                         [minLength]="1" placeholder="Countries" field="name" [multiple]="true"
                         style="width:100%">
         </p-autoComplete>
-
-        <ul>
-            <li *ngFor="#c of countries">{{c.name}}</li>
-        </ul>
     </div>
 </div>

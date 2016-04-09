@@ -1,28 +1,30 @@
 import {Component} from "angular2/core";
 import {AutoComplete} from "primeng/primeng";
 import {CountryService} from "../country.service";
+import {HTTP_PROVIDERS} from "angular2/http";
 
 @Component({
     selector: 'tags',
     templateUrl: './app/tags/tags.html',
     directives: [AutoComplete],
-    providers: [CountryService]
+    providers: [HTTP_PROVIDERS, CountryService]
 })
 export class TagsComponent {
 
     countries:any[];
-
     filteredCountriesMultiple:any[];
 
+    errorMessage:string;
+
     constructor(private countryService:CountryService) {
-        console.log("countryService:", countryService);
     }
 
     filterCountryMultiple(event) {
         let query = event.query;
-        this.countryService.getCountries().then(countries => {
-            this.filteredCountriesMultiple = this.filterCountry(query, countries);
-        });
+        this.countryService.getCountries()
+            .subscribe(
+                countries => this.filteredCountriesMultiple = this.filterCountry(query, countries),
+                error => this.errorMessage = <any>error);
     }
 
     filterCountry(query, countries:any[]):any[] {
