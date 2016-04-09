@@ -49,7 +49,6 @@ export class AppComponent implements OnInit {
     }
 
     onResize(event) {
-        /*
          var minWidthDesktop = 980;
          if (window.innerWidth < minWidthDesktop) {
          return;
@@ -64,7 +63,6 @@ export class AppComponent implements OnInit {
          // resize elements
          this.editor.updateHeight(codeEditorHeight);
          this.console.updateHeight(consoleHeight);
-         */
     }
 
 }
