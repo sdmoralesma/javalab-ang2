@@ -1,4 +1,11 @@
-<p-terminal (handler)="onCommand($event)" [(response)]="response"
-            welcomeMessage="Javalab v0.3.0 ! java -version : 1.8.0_72 Java HotSpot(TM) 64-Bit Server VM"
-            prompt="javalab $">
-</p-terminal>
+<div class="ui-grid">
+    <div class="ui-grid-row">
+        <div class="ui-grid-col-12">
+            <p-terminal (handler)="onCommand($event)" [(response)]="response" [style.height.px]="height" style="background-color: #CCC"
+                        welcomeMessage="Javalab v0.3.0 ! java -version : 1.8.0_72 Java HotSpot(TM) 64-Bit Server VM"
+                        prompt="javalab $">
+            </p-terminal>
+        </div>
+    </div>
+</div>
+
