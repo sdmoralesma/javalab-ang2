@@ -18,17 +18,18 @@ export class CodeMirrorComponent implements OnInit,OnChanges, AfterViewInit {
     }
 
     ngAfterViewInit() {
-        this.editor = CodeMirror(this.editorNativeElement, {
-            mode: "clike",
-            lineNumbers: true
-        });
+        let config:CodeMirror.EditorConfiguration = {
+            mode:"text/x-java",
+            lineNumbers: true,
+            value: "import com.demo.util.MyType;\r\nimport com.demo.util.MyInterface;\r\n\r\npublic enum Enum {\r\n  VAL1, VAL2, VAL3\r\n}\r\n\r\npublic class Class<T, V> implements MyInterface {\r\n  public static final MyType<T, V> member;\r\n  \r\n  private class InnerClass {\r\n    public int zero() {\r\n      return 0;\r\n    }\r\n  }\r\n\r\n  @Override\r\n  public MyType method() {\r\n    return member;\r\n  }\r\n\r\n  public void method2(MyType<T, V> value) {\r\n    method();\r\n    value.method3();\r\n    member = value;\r\n  }\r\n}\r\n"
+        };
 
-        var code = "/**\r\n * This class subclasses DrawableRect and adds colors to the rectangle it draws\r\n **/\r\npublic class ColoredRect extends DrawableRect {\r\n  // These are new fields defined by this class.\r\n  // x1, y1, x2, and y2 are inherited from our super-superclass, Rect.\r\n  @AnnotationTest\r\n  protected Color border, fill;\r\n  private String name;\r\n\r\n  /**\r\n   * This constructor uses super() to invoke the superclass constructor, and\r\n   * also does some initialization of its own.\r\n   **/\r\n  public ColoredRect(int x1, int y1, int x2, int y2, Color border, Color fill){\r\n    super(x1, y1, x2, y2);\r\n    /* This\r\n    is a block comment */\r\n    this.border = border;\r\n    this.fill = fill;\r\n    this.name = \"This is a string\";\r\n  }\r\n\r\n  /**\r\n   * This method overrides the draw() method of our superclass so that it\r\n   * can make use of the colors that have been specified.\r\n   **/\r\n  public void draw(Graphics g) {\r\n    g.setColor(fill);\r\n    g.fillRect(x1, y1, x2, y2);\r\n    g.setColor(border);\r\n    g.drawRect(x1, y1, x2, y2);\r\n  }\r\n}"
-
-        this.editor.setValue(code);
-        this.editor.on('change', (editor: CodeMirror.Editor) => {
+        this.editor = CodeMirror(this.editorNativeElement, config);
+        this.editor.setSize("75%", "600px");
+        this.editor.setOption("matchbrackets", true);
+        this.editor.on('change', (editor:CodeMirror.Editor) => {
             var value = this.editor.getDoc().getValue();
-            console.log("Value exposed:", value);
+            console.log("Value changed!");
         });
     }
 
