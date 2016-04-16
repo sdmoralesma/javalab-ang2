@@ -1,12 +1,12 @@
 import {Component} from "angular2/core";
-import {AutoComplete} from "primeng/primeng";
+import {AutoComplete, Panel} from "primeng/primeng";
 import {CountryService} from "../country.service";
 import {HTTP_PROVIDERS} from "angular2/http";
 
 @Component({
     selector: 'tags',
     templateUrl: './app/tags/tags.html',
-    directives: [AutoComplete],
+    directives: [AutoComplete, Panel],
     providers: [HTTP_PROVIDERS, CountryService]
 })
 export class TagsComponent {

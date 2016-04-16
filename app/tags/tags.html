@@ -1,13 +1,7 @@
-<div class="panel panel-default">
-    <div class="panel-heading">
-        <span class="panel-title glyphicon glyphicon-tags"> Tags</span>
-    </div>
-
-    <div class="panel-body">
-        <p-autoComplete [(value)]="countries"  [suggestions]="filteredCountriesMultiple"
-                        (completeMethod)="filterCountryMultiple($event)"
-                        [minLength]="1" placeholder="Countries" field="name" [multiple]="true"
-                        style="width:100%">
-        </p-autoComplete>
-    </div>
-</div>
+<p-panel header="Tags">
+    <p-autoComplete [(value)]="countries" [suggestions]="filteredCountriesMultiple"
+                    (completeMethod)="filterCountryMultiple($event)"
+                    [minLength]="1" placeholder="Countries" field="name" [multiple]="true"
+                    style="width:100%">
+    </p-autoComplete>
+</p-panel>

@@ -25,7 +25,7 @@ export class CodeMirrorComponent implements OnInit,OnChanges, AfterViewInit {
         };
 
         this.editor = CodeMirror(this.editorNativeElement, config);
-        this.editor.setSize("75%", "600px");
+        this.editor.setSize("75%", "595px");
         this.editor.setOption("matchbrackets", true);
         this.editor.on('change', (editor:CodeMirror.Editor) => {
             var value = this.editor.getDoc().getValue();

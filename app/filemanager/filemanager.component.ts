@@ -1,10 +1,10 @@
 import {Component} from "angular2/core";
-import {Tree, TreeNode} from "primeng/primeng";
+import {Tree, TreeNode, Panel} from "primeng/primeng";
 
 @Component({
     selector: 'filemanager',
     templateUrl: './app/filemanager/filemanager.html',
-    directives: [Tree]
+    directives: [Tree, Panel]
 })
 export class FileManagerComponent {
 
