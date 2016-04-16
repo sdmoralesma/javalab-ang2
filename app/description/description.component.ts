@@ -1,11 +1,11 @@
 import {Component} from "angular2/core";
-import {Editor, Header} from "primeng/primeng";
+import {Header, InputTextarea} from "primeng/primeng";
 
 @Component({
     selector: 'description',
     templateUrl: './app/description/description.html',
-    directives: [Editor, Header]
+    directives: [InputTextarea, Header]
 })
 export class DescriptionComponent {
-    descriptionText: string = "hello my fucking world!";
+    descriptionText:string = "hello my fucking world!";
 }
