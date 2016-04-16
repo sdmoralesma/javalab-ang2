@@ -1,4 +1,5 @@
 import {Component, OnInit, ViewChild} from "angular2/core";
+import 'rxjs/Rx'; // this would import all RxJS operators
 import {NavBarComponent} from "./nav-bar/navbar.component";
 import {TagsComponent} from "./tags/tags.component";
 import {JavalabService} from "./javalab.service";
