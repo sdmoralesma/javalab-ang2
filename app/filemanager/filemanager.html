@@ -1,7 +1,22 @@
-<p-panel header="Project">
-    <p-tree [value]="files" selectionMode="single" [(selection)]="selectedFile"
+<p-menubar [autoDisplay]="false">
+    <ul style="float: right;">
+        <li>
+            <button pButton type="button" data-icon="fa-plus" class="small-button"></button>
+        </li>
+        <li>
+            <button pButton type="button" data-icon="fa-pencil" class="small-button"></button>
+        </li>
+        <li>
+            <button pButton type="button" data-icon="fa-close" class="small-button"></button>
+        </li>
+    </ul>
+</p-menubar>
+
+<div style="margin-bottom: 10px;">
+
+    <p-tree [value]="files" selectionMode="single" [(selection)]="selectedFile" style="display: block; width: auto"
             (onNodeSelect)="nodeSelect($event)" (onNodeUnselect)="nodeUnselect($event)">
     </p-tree>
     <!--Selected Node: {{selectedFile ? selectedFile.label : 'none'}}-->
     <!--Debug: {{debug}}-->
-</p-panel>
+</div>
