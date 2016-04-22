@@ -1,5 +1,4 @@
 <p-menubar [autoDisplay]="false" style="margin-bottom: 7px;">
-
     <ul>
         <li>
             <h5 style="padding: 0 10px 0 0;margin: 7px 0 0;">javalab.co</h5>
@@ -18,8 +17,15 @@
         <li>
             <button pButton type="button" label="Test" data-icon="fa-check-square-o"></button>
         </li>
+        <li>
+            <p-splitButton label="Download..." icon="fa-cloud-download" (onClick)="download()">
+                <p-splitButtonItem icon="fa-file-archive-o" label="Jar" (onClick)="download()"></p-splitButtonItem>
+                <p-splitButtonItem icon="fa-file-archive-o" label="Zip" (onClick)="download()"></p-splitButtonItem>
+                <p-splitButtonItem icon="fa-file-archive-o" label="Maven Project" (onClick)="download()"></p-splitButtonItem>
+                <p-splitButtonItem icon="fa-file-archive-o" label="Gradle Project" (onClick)="download()"></p-splitButtonItem>
+            </p-splitButton>
+        </li>
     </ul>
-
 
     <ul>
         <li style="float: right; margin-top: 5px">

@@ -1,13 +1,14 @@
 import {Component, ElementRef, OnInit} from "angular2/core";
 import {Ruler, Rectangle} from "angular2/src/platform/browser/ruler";
 import * as browser from "angular2/platform/browser";
-import {AutoComplete, Menubar, Button} from "primeng/primeng";
+import {AutoComplete, Menubar, Button, SplitButton, SplitButtonItem} from "primeng/primeng";
+
 
 @Component({
     selector: 'nav-bar',
     templateUrl: './app/nav-bar/nav-bar.html',
     providers: [ElementRef],
-    directives: [AutoComplete, Menubar, Button]
+    directives: [AutoComplete, Menubar, Button, SplitButton, SplitButtonItem]
 })
 export class NavBarComponent implements OnInit {
     height:number;
@@ -56,5 +57,7 @@ export class NavBarComponent implements OnInit {
         //event.query = current value in input field
     }
 
-
+    download() {
+        console.log("download clicked!");
+    }
 }
