@@ -1,5 +1,5 @@
-import {Component, OnInit, ViewChild} from "angular2/core";
-import 'rxjs/Rx'; // this would import all RxJS operators
+import {Component, OnInit, ViewChild, AfterViewInit, ChangeDetectorRef} from "angular2/core";
+import "rxjs/Rx";
 import {NavBarComponent} from "./nav-bar/navbar.component";
 import {TagsComponent} from "./tags/tags.component";
 import {JavalabService} from "./javalab.service";
@@ -14,8 +14,9 @@ import {CodeMirrorComponent} from "./codemirror/codemirror.component";
     directives: [DescriptionComponent, FileManagerComponent, NavBarComponent, TagsComponent, TerminalComponent, CodeMirrorComponent],
     providers: [JavalabService]
 })
-export class AppComponent implements OnInit {
-    private data:any;
+export class AppComponent implements OnInit, AfterViewInit {
+
+    data:any;
     height:number;
 
     @ViewChild(TerminalComponent)
@@ -27,7 +28,10 @@ export class AppComponent implements OnInit {
     @ViewChild(NavBarComponent)
     navBar:NavBarComponent;
 
-    constructor(private _javalabService:JavalabService) {
+    @ViewChild(FileManagerComponent)
+    filemanager:FileManagerComponent;
+
+    constructor(private _javalabService:JavalabService, private _changeDetectionRef:ChangeDetectorRef) {
         //this.attachWindowEvents(); //TODO: activate on prod
     }
 
@@ -48,6 +52,41 @@ export class AppComponent implements OnInit {
     ngOnInit() {
         this.getHeroes();
     }
+
+    ngAfterViewInit():any {
+        this.filemanager.files =  [
+            {
+                "label": "Documents",
+                "data": "Documents Folder",
+                "expandedIcon": "fa-folder-open",
+                "collapsedIcon": "fa-folder",
+                "children": [
+                    {
+                        "label": "Work",
+                        "data": "Work Folder",
+                        "expandedIcon": "fa-folder-open",
+                        "collapsedIcon": "fa-folder",
+                        "children": [
+                            {
+                                "label": "Expenses.doc",
+                                "icon": "fa-file-text-o",
+                                "data": "Expenses Document"
+                            },
+                            {
+                                "label": "Resume.doc",
+                                "icon": "fa-file-text-o",
+                                "data": "Resume Document"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ];
+
+        this._changeDetectionRef.detectChanges();
+
+    }
+
 
     onResize(event) {
         var minWidthDesktop = 980;

@@ -1,4 +1,4 @@
-import {Component} from "angular2/core";
+import {Component, ChangeDetectorRef, AfterViewInit} from "angular2/core";
 import {Tree, TreeNode, Panel, Menubar, Button} from "primeng/primeng";
 
 @Component({
@@ -16,37 +16,6 @@ export class FileManagerComponent {
     debug:string;
 
     constructor() {
-    }
-
-    ngOnInit() {
-        this.files = [
-            {
-                "label": "Documents",
-                "data": "Documents Folder",
-                "expandedIcon": "fa-folder-open",
-                "collapsedIcon": "fa-folder",
-                "children": [
-                    {
-                        "label": "Work",
-                        "data": "Work Folder",
-                        "expandedIcon": "fa-folder-open",
-                        "collapsedIcon": "fa-folder",
-                        "children": [
-                            {
-                                "label": "Expenses.doc",
-                                "icon": "fa-file-text-o",
-                                "data": "Expenses Document"
-                            },
-                            {
-                                "label": "Resume.doc",
-                                "icon": "fa-file-text-o",
-                                "data": "Resume Document"
-                            }
-                        ]
-                    }
-                ]
-            }
-        ];
     }
 
     nodeSelect(event) {
