@@ -1,4 +1,4 @@
-import {Component, ChangeDetectorRef, AfterViewInit} from "angular2/core";
+import {Component} from "angular2/core";
 import {Tree, TreeNode, Panel, Menubar, Button} from "primeng/primeng";
 
 @Component({

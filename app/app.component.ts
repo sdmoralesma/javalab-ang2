@@ -16,7 +16,7 @@ import {CodeMirrorComponent} from "./codemirror/codemirror.component";
 })
 export class AppComponent implements OnInit, AfterViewInit {
 
-    data:any;
+    initialData:any;
     height:number;
 
     @ViewChild(TerminalComponent)
@@ -44,47 +44,17 @@ export class AppComponent implements OnInit, AfterViewInit {
         };
     };
 
-    getHeroes() {
-        this.data = this._javalabService.getHeroes();
-        console.log("message from server:", JSON.stringify(this.data));
+    initializeApplication() {
+        this.initialData = this._javalabService.getHeroes();
     }
 
     ngOnInit() {
-        this.getHeroes();
+        this.initializeApplication();
     }
 
     ngAfterViewInit():any {
-        this.filemanager.files =  [
-            {
-                "label": "Documents",
-                "data": "Documents Folder",
-                "expandedIcon": "fa-folder-open",
-                "collapsedIcon": "fa-folder",
-                "children": [
-                    {
-                        "label": "Work",
-                        "data": "Work Folder",
-                        "expandedIcon": "fa-folder-open",
-                        "collapsedIcon": "fa-folder",
-                        "children": [
-                            {
-                                "label": "Expenses.doc",
-                                "icon": "fa-file-text-o",
-                                "data": "Expenses Document"
-                            },
-                            {
-                                "label": "Resume.doc",
-                                "icon": "fa-file-text-o",
-                                "data": "Resume Document"
-                            }
-                        ]
-                    }
-                ]
-            }
-        ];
-
+        this.filemanager.files = this.initialData.treedata;
         this._changeDetectionRef.detectChanges();
-
     }
 
 

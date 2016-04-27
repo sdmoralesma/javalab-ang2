@@ -1,54 +1,48 @@
 export var MockResponse:any = {
     "console": "Welcome to Javalab v0.3.0 !\r\n$ java -version : 1.8.0_66 Java HotSpot(TM) 64-Bit Server VM",
     "treedata": [{
-        "id": 1,
-        "name": "dependencies",
-        "type": "file",
-        "code": "testCompile 'junit:junit:+'\n",
+        "label": "dependencies",
+        "icon": "fa-file-text-o",
+        "data": "testCompile 'junit:junit:+'\n",
         "children": []
     }, {
-        "id": 2,
-        "name": "src/main/java/",
-        "type": "folder",
+        "label": "src/main/java/",
+        "expandedIcon": "fa-folder-open",
+        "collapsedIcon": "fa-folder",
         "children": [{
-            "id": 21,
-            "name": "com.company.project",
-            "type": "folder",
+            "label": "com.company.project",
+            "icon": "fa fa-th-large",
             "children": [{
-                "id": 211,
-                "name": "HelloWorld.java",
-                "type": "file",
-                "code": "package com.company.project;\n\npublic class HelloWorld {\n\n    public static void main(String[] args) {\n        System.out.println(\"hello world java!\");\n    }\n\n}\n",
+                "label": "HelloWorld.java",
+                "icon": "fa-file-text-o",
+                "data": "package com.company.project;\n\npublic class HelloWorld {\n\n    public static void main(String[] args) {\n        System.out.println(\"hello world java!\");\n    }\n\n}\n",
                 "cursor": "",
                 "children": []
             }]
         }]
     }, {
-        "id": 3,
-        "name": "src/test/java/",
-        "type": "folder",
+        "label": "src/test/java/",
+        "expandedIcon": "fa-folder-open",
+        "collapsedIcon": "fa-folder",
         "children": [{
-            "id": 31,
-            "name": "com.company.project",
-            "type": "folder",
+            "label": "com.company.project",
+            "icon": "fa fa-th-large",
             "children": [{
-                "id": 311,
-                "name": "HelloWorldTest.java",
-                "type": "file",
-                "code": "package com.company.project;\n\nimport org.junit.*;\n\npublic class HelloWorldTest {\n\n    @Test\n    public void test() {\n        Assert.assertEquals(1, 1);\n    }\n}\n",
+                "label": "HelloWorldTest.java",
+                "icon": "fa-file-text-o",
+                "data": "package com.company.project;\n\nimport org.junit.*;\n\npublic class HelloWorldTest {\n\n    @Test\n    public void test() {\n        Assert.assertEquals(1, 1);\n    }\n}\n",
                 "cursor": "",
                 "children": []
             }]
         }]
     }],
-    "runnableNode": {"id": "undefined", "mainClass": false, "testClass": false},
+    "runnableNode": {"mainClass": false, "testClass": false},
     "initConfig": {
         "language": "java",
         "languageMode": "ace/mode/java",
         "javaClasses": [{
-            "id": 211,
-            "name": "HelloWorld.java",
+            "label": "HelloWorld.java",
             "path": "com.company.project.HelloWorld"
-        }, {"id": 311, "name": "HelloWorldTest.java", "path": "com.company.project.HelloWorldTest"}]
+        }, {"label": "HelloWorldTest.java", "path": "com.company.project.HelloWorldTest"}]
     }
 };
