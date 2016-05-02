@@ -45,7 +45,7 @@ export class AppComponent implements OnInit, AfterViewInit {
     };
 
     initializeApplication() {
-        this.initialData = this._javalabService.getHeroes();
+        this.initialData = this._javalabService.getMockResponse();
     }
 
     ngOnInit() {
