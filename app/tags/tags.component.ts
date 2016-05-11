@@ -1,7 +1,7 @@
-import {Component} from "angular2/core";
+import {Component} from "@angular/core";
 import {AutoComplete, Panel} from "primeng/primeng";
 import {CountryService} from "../country.service";
-import {HTTP_PROVIDERS} from "angular2/http";
+import {HTTP_PROVIDERS} from "@angular/http";
 
 @Component({
     selector: 'tags',
