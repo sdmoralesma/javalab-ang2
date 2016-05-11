@@ -1,7 +1,7 @@
 <p-toolbar [style]="{'margin-bottom':'7px'}">
 
     <div class="ui-toolbar-group-left">
-        <h5 style="padding: 0 10px 0 0;margin: 7px 0 0;width: 40px;display: inline;">javalab.co</h5>
+        <h2 style="padding: 3px 10px 0 3px; display: inline;">javalab.co</h2>
 
         <p-autoComplete [(value)]="text" [suggestions]="results" (completeMethod)="search($event)"
                         (onDropdownClick)="handleDropdown(event)">
@@ -20,10 +20,10 @@
 
     <div class="ui-toolbar-group-right">
         <iframe src="http://ghbtns.com/github-btn.html?user=sdmoralesma&repo=javalab&type=watch&count=true&size=large"
-                height="30" width="120" frameborder="0" scrolling="0" style="width:120px; height: 30px;"
+                height="30" width="120" frameborder="0" scrolling="0" style="display: inline"
                 allowTransparency="true"></iframe>
 
-        <a data-icon="fa-question" href="https://github.com/sdmoralesma/javalab/wiki" target="_blank"></a>
+        <a style="display: inline" data-icon="fa-question" href="https://github.com/sdmoralesma/javalab/wiki" target="_blank"></a>
     </div>
 
 </p-toolbar>
