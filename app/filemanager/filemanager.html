@@ -1,19 +1,12 @@
-<p-menubar [autoDisplay]="false">
-    <ul style="float: right;">
-        <li>
-            <button pButton type="button" data-icon="fa-plus" class="small-button"></button>
-        </li>
-        <li>
-            <button pButton type="button" data-icon="fa-pencil" class="small-button"></button>
-        </li>
-        <li>
-            <button pButton type="button" data-icon="fa-close" class="small-button"></button>
-        </li>
-    </ul>
-</p-menubar>
+<p-toolbar>
+    <div class="ui-toolbar-group-right">
+        <button pButton type="button" data-icon="fa-plus"></button>
+        <button pButton type="button" data-icon="fa-pencil"></button>
+        <button pButton type="button" data-icon="fa-close"></button>
+    </div>
+</p-toolbar>
 
 <div style="margin-bottom: 10px;">
-
     <p-tree [value]="files" selectionMode="single" [(selection)]="selectedFile"
             [style]="{'display':'block','width':'auto'}"
             (onNodeSelect)="nodeSelect($event)" (onNodeUnselect)="nodeUnselect($event)">
