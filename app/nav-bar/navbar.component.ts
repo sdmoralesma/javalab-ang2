@@ -1,10 +1,10 @@
 import {Component, OnInit} from "@angular/core";
-import {AutoComplete, Menubar, Button, SplitButton, SplitButtonItem} from "primeng/primeng";
+import {AutoComplete, Button, SplitButton, SplitButtonItem, Toolbar} from "primeng/primeng";
 
 @Component({
     selector: 'nav-bar',
     templateUrl: './app/nav-bar/nav-bar.html',
-    directives: [AutoComplete, Menubar, Button, SplitButton, SplitButtonItem]
+    directives: [AutoComplete, Toolbar, Button, SplitButton, SplitButtonItem]
 })
 export class NavBarComponent implements OnInit {
     height:number;
