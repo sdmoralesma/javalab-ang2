@@ -1,5 +1,5 @@
-import {Component, OnInit, ViewChild, AfterViewInit, ChangeDetectorRef} from "angular2/core";
-import "rxjs/Rx";
+import {Component, OnInit, ViewChild, AfterViewInit, ChangeDetectorRef} from "@angular/core";
+import {HTTP_PROVIDERS} from "@angular/http";
 import {NavBarComponent} from "./nav-bar/navbar.component";
 import {TagsComponent} from "./tags/tags.component";
 import {JavalabService} from "./javalab.service";
@@ -12,7 +12,7 @@ import {CodeMirrorComponent} from "./codemirror/codemirror.component";
     selector: 'javalab-app',
     templateUrl: './app/app.html',
     directives: [DescriptionComponent, FileManagerComponent, NavBarComponent, TagsComponent, TerminalComponent, CodeMirrorComponent],
-    providers: [JavalabService]
+    providers: [HTTP_PROVIDERS, JavalabService]
 })
 export class AppComponent implements OnInit, AfterViewInit {
 

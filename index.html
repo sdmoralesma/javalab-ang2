@@ -2,8 +2,8 @@
 <html>
 
 <head>
+    <script>document.write('<base href="' + document.location + '" />');</script>
     <title>Javalab | An Open Source Web Lab</title>
-    <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon.ico"/>
 
     <meta charset="UTF-8">
     <meta name="description"
@@ -15,37 +15,23 @@
     <meta name="author" content="Sergio Morales">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon.ico"/>
+
     <!-- PrimeNG/PrimeUI CSS dependencies-->
-    <link rel="stylesheet" type="text/css" href="node_modules/primeui/themes/bootstrap/theme.css" />
+    <link rel="stylesheet" type="text/css" href="node_modules/primeui/themes/omega/theme.css" />
     <link rel="stylesheet" type="text/css" href="/assets/css/font-awesome.min.css" />
     <link rel="stylesheet" type="text/css" href="node_modules/primeui/primeui-ng-all.min.css" />
 
     <!-- Load Angular libraries -->
-    <script src="node_modules/angular2/bundles/angular2-polyfills.js"></script>
+    <script src="node_modules/es6-shim/es6-shim.min.js"></script>
+    <script src="node_modules/zone.js/dist/zone.js"></script>
+    <script src="node_modules/reflect-metadata/Reflect.js"></script>
     <script src="node_modules/systemjs/dist/system.src.js"></script>
-    <script src="node_modules/rxjs/bundles/Rx.js"></script>
-    <script src="node_modules/angular2/bundles/angular2.dev.js"></script>
-    <script src="node_modules/angular2/bundles/router.dev.js"></script>
-    <script src="node_modules/angular2/bundles/http.dev.js"></script>
-
     <script src="node_modules/primeui/primeui-ng-all.js"></script>
-
-    <!-- Configure SystemJS -->
+    <script src="systemjs.config.js"></script>
     <script>
-        System.config({
-            defaultJSExtensions: true,
-            packages: {
-                "/angular2": {"defaultExtension": false}
-            },
-            map: {
-                "primeng": "node_modules/primeng",
-                "rxjs": "node_modules/rxjs",
-                "angular2/src/platform/browser/ruler": "node_modules/angular2/src/platform/browser/ruler.js"
-            }
-        });
-        System.import('app/boot').then(null, console.error.bind(console));
+        System.import('app').catch(function(err){ console.error(err);  });
     </script>
-
 
     <!--CodeMirror setup-->
     <link rel="stylesheet" href="assets/css/codemirror.css"/>
@@ -53,8 +39,6 @@
     <script src="node_modules/codemirror/mode/clike/clike.js"></script>
 
 </head>
-
-<base href="/">
 
 <!-- 3. Display the application -->
 <body>
@@ -64,4 +48,3 @@
 </body>
 
 </html>
-
