@@ -14,7 +14,8 @@
 
 <div style="margin-bottom: 10px;">
 
-    <p-tree [value]="files" selectionMode="single" [(selection)]="selectedFile" style="display: block; width: auto"
+    <p-tree [value]="files" selectionMode="single" [(selection)]="selectedFile"
+            [style]="{'display':'block','width':'auto'}"
             (onNodeSelect)="nodeSelect($event)" (onNodeUnselect)="nodeUnselect($event)">
     </p-tree>
     <!--Selected Node: {{selectedFile ? selectedFile.label : 'none'}}-->
