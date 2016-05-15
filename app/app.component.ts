@@ -6,13 +6,18 @@ import {DescriptionComponent} from "./description/description.component";
 import {FileManagerComponent} from "./filemanager/filemanager.component";
 import {TerminalComponent} from "./terminal/terminal.component";
 import {CodeMirrorComponent} from "./codemirror/codemirror.component";
+import {Routes, ROUTER_DIRECTIVES} from "@angular/router";
+import {HeroListComponent} from "./hero-list/hero-list.component";
 
 @Component({
     selector: 'javalab-app',
     templateUrl: './app/app.html',
-    directives: [DescriptionComponent, FileManagerComponent, NavBarComponent, TagsComponent, TerminalComponent, CodeMirrorComponent],
+    directives: [DescriptionComponent, FileManagerComponent, NavBarComponent, TagsComponent, TerminalComponent, CodeMirrorComponent, ROUTER_DIRECTIVES],
     providers: [JavalabService]
 })
+@Routes([
+    {path: '/heroes', component: HeroListComponent},
+])
 export class AppComponent implements OnInit, AfterViewInit {
 
     initialData:any;

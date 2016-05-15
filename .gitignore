@@ -16,3 +16,4 @@ node_modules/
 nbproject/
 npm-debug.log
 typings/
+dist/
