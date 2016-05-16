@@ -1,13 +1,8 @@
-*.js
-*.js.map
 *.log
-
-target/
 *.class
 *.pem
 .idea/
 *.iml
-build/
 *tar.gz
 *~
 *.DS_Store
