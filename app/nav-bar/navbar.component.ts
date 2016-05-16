@@ -4,6 +4,7 @@ import {AutoComplete, Button, SplitButton, SplitButtonItem, Toolbar} from "prime
 @Component({
     selector: 'nav-bar',
     templateUrl: './app/nav-bar/nav-bar.html',
+    styleUrls: ['./app/nav-bar/nav-bar.css'],
     directives: [AutoComplete, Toolbar, Button, SplitButton, SplitButtonItem]
 })
 export class NavBarComponent implements OnInit {
