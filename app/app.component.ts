@@ -35,7 +35,7 @@ export class AppComponent implements OnInit, AfterViewInit {
     @ViewChild(FileManagerComponent)
     filemanager:FileManagerComponent;
 
-    constructor(private _javalabService:JavalabService, private _changeDetectionRef:ChangeDetectorRef) {
+    constructor(private javalabService:JavalabService, private changeDetectionRef:ChangeDetectorRef) {
         //this.attachWindowEvents(); //TODO: activate on prod
     }
 
@@ -49,7 +49,7 @@ export class AppComponent implements OnInit, AfterViewInit {
     };
 
     initializeApplication() {
-        this.initialData = this._javalabService.getMockResponse();
+        this.initialData = this.javalabService.getMockResponse();
     }
 
     ngOnInit() {
@@ -58,7 +58,7 @@ export class AppComponent implements OnInit, AfterViewInit {
 
     ngAfterViewInit():any {
         this.filemanager.files = this.initialData.treedata;
-        this._changeDetectionRef.detectChanges();
+        this.changeDetectionRef.detectChanges();
     }
 
 
