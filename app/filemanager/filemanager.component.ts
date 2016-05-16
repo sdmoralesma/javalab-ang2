@@ -1,17 +1,22 @@
 import {Component} from "@angular/core";
-import {Tree, TreeNode, Panel, Button, Toolbar} from "primeng/primeng";
+import {Tree, TreeNode, Panel, Button, Toolbar, Dialog, InputText} from "primeng/primeng";
 
 @Component({
     selector: 'filemanager',
     templateUrl: './app/filemanager/filemanager.html',
-    directives: [Tree, Panel, Toolbar, Button]
+    directives: [Tree, Panel, Toolbar, Button, Dialog, InputText]
 })
 export class FileManagerComponent {
 
+    //Dialog variables
+    displayNewFolder:boolean = false;
+    displayNewFile:boolean = false;
+    displayRename:boolean = false;
+    displayDelete:boolean = false;
+    newNodeName:string = "";
+
+    selectedNode:TreeNode = null;
     files:TreeNode[];
-
-    selectedFile:TreeNode;
-
     debug:string;
 
     constructor() {
@@ -32,4 +37,66 @@ export class FileManagerComponent {
         }
     }
 
+    showCreateFolderDialog() {
+        this.displayNewFolder = true;
+    }
+
+    createFolder() {
+        var newFolder:TreeNode;
+        if (this.selectedNode === null) {
+            newFolder = {
+                "label": this.newNodeName,
+                "expandedIcon": "fa-folder-open",
+                "collapsedIcon": "fa-folder",
+                "children": []
+            };
+
+            this.files.push(newFolder);
+        } else {
+
+        }
+        this.displayNewFolder = false;
+        this.newNodeName = "";
+    }
+
+    showCreateFileDialog() {
+        this.displayNewFile = true;
+    }
+
+    createFile() {
+        var newFolder:TreeNode;
+        if (this.selectedNode === null) {
+            newFolder = {
+                "label": this.newNodeName,
+                "expandedIcon": "fa-folder-open",
+                "collapsedIcon": "fa-folder",
+                "children": []
+            };
+
+            this.files.push(newFolder);
+        } else {
+
+        }
+        this.displayNewFile = false;
+        this.newNodeName = "";
+    }
+
+    showRenameItemDialog() {
+        this.displayRename = true;
+
+    }
+
+    renameItem() {
+        this.displayRename = false;
+        this.newNodeName = "";
+    }
+
+    showDeleteItemDialog() {
+        this.displayDelete = true;
+
+    }
+
+    deleteItem() {
+        this.displayDelete = false;
+    }
 }
