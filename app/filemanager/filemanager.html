@@ -12,8 +12,6 @@
             [style]="{'display':'block','width':'auto'}"
             (onNodeSelect)="nodeSelect($event)" (onNodeUnselect)="nodeUnselect($event)">
     </p-tree>
-    <!--Selected Node: {{selectedFile ? selectedFile.label : 'none'}}-->
-    <!--Debug: {{debug}}-->
 </div>
 
 <p-dialog header="New Folder" [(visible)]="displayNewFolder" modal="modal"

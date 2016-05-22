@@ -1,4 +1,4 @@
-import {Component} from "@angular/core";
+import {Component, Output, EventEmitter} from "@angular/core";
 import {Tree, TreeNode, Panel, Button, Toolbar, Dialog, InputText} from "primeng/primeng";
 
 @Component({
@@ -15,24 +15,28 @@ export class FileManagerComponent {
     displayDelete:boolean = false;
     newNodeName:string = "";
 
+    // file management
     selectedNode:TreeNode = null;
     files:TreeNode[];
-    debug:string;
+    
+    //events
+    @Output() myEvent = new EventEmitter();
 
     constructor() {
     }
 
     nodeSelect(event) {
-        this.debug = "nodeSelect";
+        console.log("nodeSelected in filemanager");
+        this.myEvent.emit({value: "jojojojo"});
     }
 
     nodeUnselect(event) {
-        this.debug = "nodeUnSelect";
+        console.log("nodeUnSelect");
     }
 
     nodeExpand(event) {
         if (event.node) {
-            this.debug = event.node.label;
+            console.log(event.node.label);
             // this.nodeService.getLazyFiles().then(nodes => event.node.children = nodes);
         }
     }

@@ -40,4 +40,8 @@ export class CodeMirrorComponent implements OnInit,OnChanges, AfterViewInit {
     updateHeight(height:number) {
         this.height = height;
     }
+
+    updateCode(newCode:string) {
+        this.editor.setValue(newCode);
+    }
 }
