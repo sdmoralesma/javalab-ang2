@@ -2,15 +2,16 @@
     <div class="ui-toolbar-group-right">
         <button pButton type="button" data-icon="fa-folder" (click)="newNodeName=''; displayNewFolder=true"></button>
         <button pButton type="button" data-icon="fa-file" (click)="newNodeName=''; displayNewFile=true"></button>
-        <button pButton type="button" data-icon="fa-pencil" (click)="newNodeName=''; displayRename=true"></button>
-        <button pButton type="button" data-icon="fa-close" (click)="newNodeName=''; displayDelete=true"></button>
+        <button pButton type="button" data-icon="fa-pencil" [disabled]="selectedNode==null"
+                (click)="newNodeName='';  newNodeName=selectedNode.label; displayRename=true"></button>
+        <button pButton type="button" data-icon="fa-close" [disabled]="selectedNode==null"
+                (click)="newNodeName='';  newNodeName=selectedNode.label; displayDelete=true"></button>
     </div>
 </p-toolbar>
 
 <div style="margin-bottom: 10px;">
     <p-tree [value]="files" selectionMode="single" [(selection)]="selectedNode"
-            [style]="{'display':'block','width':'auto'}"
-            (onNodeSelect)="nodeSelect($event)" (onNodeUnselect)="nodeUnselect($event)">
+            [style]="{'display':'block','width':'auto'}" (onNodeSelect)="nodeSelect($event)">
     </p-tree>
 </div>
 
@@ -44,19 +45,19 @@
     <input id="newNodeName" style="width: 90%" type="text" pInputText [(ngModel)]="newNodeName"/>
     <footer>
         <div class="ui-dialog-buttonpane ui-widget-content ui-helper-clearfix">
-            <button type="button" pButton icon="fa-close" (click)="displayRename=false" label="Cancel"></button>
-            <button type="button" pButton icon="fa-check" (click)="renameItem()" label="Rename"></button>
+            <button type="button" pButton icon="fa-close" (click)="displayRename=false;" label="Cancel"></button>
+            <button type="button" pButton icon="fa-check" (click)="renameItem(); displayRename=false" label="Rename"></button>
         </div>
     </footer>
 </p-dialog>
 
 <p-dialog header="Delete" [(visible)]="displayDelete" modal="modal"
           showEffect="fade" [resizable]="false" [draggable]="false">
-    <label>Delete item?</label>
+    <label>Delete "{{newNodeName}}"?</label>
     <footer>
         <div class="ui-dialog-buttonpane ui-widget-content ui-helper-clearfix">
             <button type="button" pButton icon="fa-close" (click)="displayDelete=false" label="Cancel"></button>
-            <button type="button" pButton icon="fa-check" (click)="deleteItem()" label="Delete"></button>
+            <button type="button" pButton icon="fa-check" (click)="deleteItem(); displayDelete=false" label="Delete"></button>
         </div>
     </footer>
 </p-dialog>
