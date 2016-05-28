@@ -103,21 +103,24 @@ export class FileManagerComponent {
 
     private findNodeById(id:string, tree:FileNode[]):FileNode {
         for (var node of tree) {
-
-            console.log(node.id);
-
-            if (node.id == null) {
-                throw new Error("Id for node is not defined");
-            }
-
-            if (id == node.id) {
-                return node;
-            }
-
-            if (node.children.length > 0) {
-                return this.findNodeById(id, node.children);
+            var found = this.searchNode(id, node);
+            if (found != null) {
+                return found;
             }
         }
+    }
+
+    private searchNode(id:string, node:FileNode) {
+        if (node.id == id) {
+            return node;
+        } else if (node.children != null) {
+            var result = null;
+            for (var i = 0; result == null && i < node.children.length; i++) {
+                result = this.searchNode(id, node.children[i]);
+            }
+            return result;
+        }
+        return null;
     }
 
     private generateId() {
