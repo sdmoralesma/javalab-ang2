@@ -79,8 +79,7 @@ export class AppComponent implements OnInit, AfterViewInit {
         this.terminal.updateHeight(consoleHeight);
     }
 
-    receivedEvent(response) {
-        console.log("received event OK in: App Parent: ", response);
+    showCode(response) {
         this.editor.updateCode(response.value);
     }
 }

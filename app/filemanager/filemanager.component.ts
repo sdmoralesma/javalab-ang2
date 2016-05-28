@@ -35,11 +35,12 @@ export class FileManagerComponent {
     files:FileNode[];
 
     //events
-    @Output() myEvent = new EventEmitter();
+    @Output() updateCode = new EventEmitter();
 
     nodeSelect(event) {
-        console.log("nodeSelected in filemanager");
-        this.myEvent.emit({value: "jojojojo"});
+        if (this.selectedNode.icon === FILE_CLASS) {
+            this.updateCode.emit({value: this.selectedNode.data});
+        }
     }
 
     createFolder() {

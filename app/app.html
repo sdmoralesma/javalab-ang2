@@ -9,7 +9,7 @@
 
         <div class="ui-grid-row">
             <div class="ui-grid-col-3">
-                <filemanager (myEvent)="receivedEvent($event)"></filemanager>
+                <filemanager (updateCode)="showCode($event)"></filemanager>
 
                 <description></description>
 
@@ -23,7 +23,7 @@
 
         <div class="ui-grid-row">
             <div class="ui-grid-col-12">
-                <terminal (my-event)="receivedEvent($event)"></terminal>
+                <terminal></terminal>
             </div>
         </div>
     </div>
