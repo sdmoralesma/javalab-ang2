@@ -14,10 +14,11 @@ export var MockResponse:any = {
             "expandedIcon": "fa-folder-open",
             "collapsedIcon": "fa-folder",
             "children": [{
+                "id":21,
                 "label": "com.company.project",
                 "icon": "fa fa-th-large",
                 "children": [{
-                    "id": 21,
+                    "id": 211,
                     "label": "HelloWorld.java",
                     "icon": "fa-file-text-o",
                     "data": "package com.company.project;\n\npublic class HelloWorld {\n\n    public static void main(String[] args) {\n        System.out.println(\"hello world java!\");\n    }\n\n}\n",

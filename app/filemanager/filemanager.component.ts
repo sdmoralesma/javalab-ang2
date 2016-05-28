@@ -18,7 +18,7 @@ export class FileManagerComponent {
     // file management
     selectedNode:TreeNode = null;
     files:TreeNode[];
-    
+
     //events
     @Output() myEvent = new EventEmitter();
 
@@ -46,18 +46,17 @@ export class FileManagerComponent {
     }
 
     createFolder() {
-        var newFolder:TreeNode;
-        if (this.selectedNode === null) {
-            newFolder = {
-                "label": this.newNodeName,
-                "expandedIcon": "fa-folder-open",
-                "collapsedIcon": "fa-folder",
-                "children": []
-            };
+        var newFolder:TreeNode = {
+            "label": this.newNodeName,
+            "expandedIcon": "fa-folder-open",
+            "collapsedIcon": "fa-folder",
+            "children": []
+        };
 
+        if (this.selectedNode === null) {
             this.files.push(newFolder);
         } else {
-
+            this.selectedNode.children.push(newFolder);
         }
         this.displayNewFolder = false;
         this.newNodeName = "";
@@ -68,22 +67,53 @@ export class FileManagerComponent {
     }
 
     createFile() {
-        var newFolder:TreeNode;
+        var newFolder:TreeNode = {
+            "label": this.newNodeName,
+            "icon": "fa-file-text-o",
+            "data": ""
+        };
+
         if (this.selectedNode === null) {
-            newFolder = {
-                "label": this.newNodeName,
-                "expandedIcon": "fa-folder-open",
-                "collapsedIcon": "fa-folder",
-                "children": []
-            };
-
             this.files.push(newFolder);
-        } else {
+        } else if (this.selectedNode.icon === "fa-file-text-o") {
+            var parentId = this.calculateParentId(this.selectedNode.id.toString());
+            if (parentId == "") {
+                this.files.push(newFolder);
+            } else {
+                var parentNode:TreeNode = this.findNodeById(parentId, this.files);
+                parentNode.children.push(newFolder);
+            }
 
+        } else {
+            this.selectedNode.children.push(newFolder);
         }
         this.displayNewFile = false;
         this.newNodeName = "";
     }
+
+
+    private findNodeById(id:string, tree:TreeNode[]):TreeNode {
+        for (var node of tree) {
+            console.log(node);
+
+            if (id == node.id.toString()) {
+                return node;
+            }
+
+            if (node.children.length > 0) {
+                return this.findNodeById(id, node.children);
+            }
+        }
+    }
+
+    private calculateParentId(id:string):string {
+        if (id.length >= 1) {
+            return id.slice(0, -1);
+        }
+
+        throw new Error("Id length is = 0");
+    }
+
 
     showRenameItemDialog() {
         this.displayRename = true;

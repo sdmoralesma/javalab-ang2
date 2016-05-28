@@ -57,7 +57,7 @@ export class AppComponent implements OnInit, AfterViewInit {
     }
 
     ngAfterViewInit():any {
-        this.filemanager.files = this.initialData.treedata;
+        this.filemanager.files = this.initialData.filesTree;
         this.changeDetectionRef.detectChanges();
     }
 
