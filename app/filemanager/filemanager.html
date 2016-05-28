@@ -1,9 +1,9 @@
 <p-toolbar>
     <div class="ui-toolbar-group-right">
-        <button pButton type="button" data-icon="fa-folder" (click)="showCreateFolderDialog()"></button>
-        <button pButton type="button" data-icon="fa-file" (click)="showCreateFileDialog()"></button>
-        <button pButton type="button" data-icon="fa-pencil" (click)="showRenameItemDialog()"></button>
-        <button pButton type="button" data-icon="fa-close" (click)="showDeleteItemDialog()"></button>
+        <button pButton type="button" data-icon="fa-folder" (click)="newNodeName=''; displayNewFolder=true"></button>
+        <button pButton type="button" data-icon="fa-file" (click)="newNodeName=''; displayNewFile=true"></button>
+        <button pButton type="button" data-icon="fa-pencil" (click)="newNodeName=''; displayRename=true"></button>
+        <button pButton type="button" data-icon="fa-close" (click)="newNodeName=''; displayDelete=true"></button>
     </div>
 </p-toolbar>
 
@@ -21,7 +21,7 @@
     <footer>
         <div class="ui-dialog-buttonpane ui-widget-content ui-helper-clearfix">
             <button type="button" pButton icon="fa-close" (click)="displayNewFolder=false" label="Cancel"></button>
-            <button type="button" pButton icon="fa-check" (click)="createFolder()" label="Create"></button>
+            <button type="button" pButton icon="fa-check" (click)="createFolder(); displayNewFolder=false" label="Create"></button>
         </div>
     </footer>
 </p-dialog>
@@ -33,7 +33,7 @@
     <footer>
         <div class="ui-dialog-buttonpane ui-widget-content ui-helper-clearfix">
             <button type="button" pButton icon="fa-close" (click)="displayNewFile=false" label="Cancel"></button>
-            <button type="button" pButton icon="fa-check" (click)="createFile()" label="Create"></button>
+            <button type="button" pButton icon="fa-check" (click)="createFile(); displayNewFile=false" label="Create"></button>
         </div>
     </footer>
 </p-dialog>

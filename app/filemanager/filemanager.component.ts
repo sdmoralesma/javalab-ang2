@@ -1,8 +1,8 @@
 import {Component, Output, EventEmitter} from "@angular/core";
-import {Tree, TreeNode, Panel, Button, Toolbar, Dialog, InputText} from "primeng/primeng";
+import {Tree, Panel, Button, Toolbar, Dialog, InputText} from "primeng/primeng";
+import {UUID} from "./uuid";
 
-
-//TODO: create method generateIdForNode() 
+const FILE_CLASS:string = "fa-file-text-o";
 
 export interface FileNode {
     id:string;
@@ -11,10 +11,10 @@ export interface FileNode {
     icon?:any;
     expandedIcon?:any;
     collapsedIcon?:any;
+    parentId?:string;
     children?:FileNode[];
     leaf?:boolean;
 }
-
 
 @Component({
     selector: 'filemanager',
@@ -37,9 +37,6 @@ export class FileManagerComponent {
     //events
     @Output() myEvent = new EventEmitter();
 
-    constructor() {
-    }
-
     nodeSelect(event) {
         console.log("nodeSelected in filemanager");
         this.myEvent.emit({value: "jojojojo"});
@@ -52,17 +49,12 @@ export class FileManagerComponent {
     nodeExpand(event) {
         if (event.node) {
             console.log(event.node.label);
-            // this.nodeService.getLazyFiles().then(nodes => event.node.children = nodes);
         }
-    }
-
-    showCreateFolderDialog() {
-        this.displayNewFolder = true;
     }
 
     createFolder() {
         var newFolder:FileNode = {
-            "id": "",
+            "id": this.generateId(),
             "label": this.newNodeName,
             "expandedIcon": "fa-folder-open",
             "collapsedIcon": "fa-folder",
@@ -71,49 +63,57 @@ export class FileManagerComponent {
 
         if (this.selectedNode === null) {
             this.files.push(newFolder);
-        } else {
+            return;
+        }
+
+        var parentId = this.selectedNode.parentId;
+        if (parentId == "" || parentId == null) {
+            newFolder.parentId = this.selectedNode.id;
+            this.files.push(newFolder);
+            return;
+        }
+
+        var parentNode:FileNode = this.findNodeById(parentId, this.files);
+        newFolder.parentId = parentNode.id;
+        if (this.selectedNode.icon === FILE_CLASS) {
+            parentNode.children.push(newFolder);
+        } else { // is a folder
             this.selectedNode.children.push(newFolder);
         }
-        this.displayNewFolder = false;
-        this.newNodeName = "";
-    }
-
-    showCreateFileDialog() {
-        this.displayNewFile = true;
     }
 
     createFile() {
-        var newFolder:FileNode = {
-            "id": "",
+        var newFile:FileNode = {
+            "id": this.generateId(),
             "label": this.newNodeName,
             "icon": "fa-file-text-o",
             "data": ""
         };
 
         if (this.selectedNode === null) {
-            this.files.push(newFolder);
-        } else if (this.selectedNode.icon === "fa-file-text-o") {
-            var parentId = this.calculateParentId(this.selectedNode.id.toString());
-            if (parentId == "") {
-                this.files.push(newFolder);
-            } else {
-                var parentNode:FileNode = this.findNodeById(parentId, this.files);
-                parentNode.children.push(newFolder);
-            }
-
-        } else {
-            this.selectedNode.children.push(newFolder);
+            this.files.push(newFile);
+            return;
         }
-        this.displayNewFile = false;
-        this.newNodeName = "";
-    }
 
+        var parentId = this.selectedNode.parentId;
+        if (parentId == "" || parentId == null) {
+            newFile.parentId = this.selectedNode.id;
+            this.files.push(newFile);
+            return;
+        }
+
+        var parentNode:FileNode = this.findNodeById(parentId, this.files);
+        newFile.parentId = parentNode.id;
+        if (this.selectedNode.icon === FILE_CLASS) {
+            parentNode.children.push(newFile);
+        } else { // is a folder
+            this.selectedNode.children.push(newFile);
+        }
+    }
 
     private findNodeById(id:string, tree:FileNode[]):FileNode {
         for (var node of tree) {
-            console.log(node);
-
-            if (id == node.id.toString()) {
+            if (id == node.id) {
                 return node;
             }
 
@@ -123,28 +123,13 @@ export class FileManagerComponent {
         }
     }
 
-    private calculateParentId(id:string):string {
-        if (id.length >= 1) {
-            return id.slice(0, -1);
-        }
-
-        throw new Error("Id length is = 0");
-    }
-
-
-    showRenameItemDialog() {
-        this.displayRename = true;
-
+    private generateId() {
+        return UUID.generate();
     }
 
     renameItem() {
         this.displayRename = false;
         this.newNodeName = "";
-    }
-
-    showDeleteItemDialog() {
-        this.displayDelete = true;
-
     }
 
     deleteItem() {
