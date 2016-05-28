@@ -1,6 +1,21 @@
 import {Component, Output, EventEmitter} from "@angular/core";
 import {Tree, TreeNode, Panel, Button, Toolbar, Dialog, InputText} from "primeng/primeng";
 
+
+//TODO: create method generateIdForNode() 
+
+export interface FileNode {
+    id:string;
+    label?:string;
+    data?:any;
+    icon?:any;
+    expandedIcon?:any;
+    collapsedIcon?:any;
+    children?:FileNode[];
+    leaf?:boolean;
+}
+
+
 @Component({
     selector: 'filemanager',
     templateUrl: './app/filemanager/filemanager.html',
@@ -16,8 +31,8 @@ export class FileManagerComponent {
     newNodeName:string = "";
 
     // file management
-    selectedNode:TreeNode = null;
-    files:TreeNode[];
+    selectedNode:FileNode = null;
+    files:FileNode[];
 
     //events
     @Output() myEvent = new EventEmitter();
@@ -46,7 +61,8 @@ export class FileManagerComponent {
     }
 
     createFolder() {
-        var newFolder:TreeNode = {
+        var newFolder:FileNode = {
+            "id": "",
             "label": this.newNodeName,
             "expandedIcon": "fa-folder-open",
             "collapsedIcon": "fa-folder",
@@ -67,7 +83,8 @@ export class FileManagerComponent {
     }
 
     createFile() {
-        var newFolder:TreeNode = {
+        var newFolder:FileNode = {
+            "id": "",
             "label": this.newNodeName,
             "icon": "fa-file-text-o",
             "data": ""
@@ -80,7 +97,7 @@ export class FileManagerComponent {
             if (parentId == "") {
                 this.files.push(newFolder);
             } else {
-                var parentNode:TreeNode = this.findNodeById(parentId, this.files);
+                var parentNode:FileNode = this.findNodeById(parentId, this.files);
                 parentNode.children.push(newFolder);
             }
 
@@ -92,7 +109,7 @@ export class FileManagerComponent {
     }
 
 
-    private findNodeById(id:string, tree:TreeNode[]):TreeNode {
+    private findNodeById(id:string, tree:FileNode[]):FileNode {
         for (var node of tree) {
             console.log(node);
 
