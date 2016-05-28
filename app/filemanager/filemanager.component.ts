@@ -42,16 +42,6 @@ export class FileManagerComponent {
         this.myEvent.emit({value: "jojojojo"});
     }
 
-    nodeUnselect(event) {
-        console.log("nodeUnSelect");
-    }
-
-    nodeExpand(event) {
-        if (event.node) {
-            console.log(event.node.label);
-        }
-    }
-
     createFolder() {
         var newFolder:FileNode = {
             "id": this.generateId(),
@@ -113,6 +103,13 @@ export class FileManagerComponent {
 
     private findNodeById(id:string, tree:FileNode[]):FileNode {
         for (var node of tree) {
+
+            console.log(node.id);
+
+            if (node.id == null) {
+                throw new Error("Id for node is not defined");
+            }
+
             if (id == node.id) {
                 return node;
             }
@@ -128,11 +125,22 @@ export class FileManagerComponent {
     }
 
     renameItem() {
-        this.displayRename = false;
-        this.newNodeName = "";
+        this.selectedNode.label = this.newNodeName;
     }
 
     deleteItem() {
-        this.displayDelete = false;
+        var parentId = this.selectedNode.parentId;
+        if (parentId == "" || parentId == null) {
+            var index = this.files.indexOf(this.selectedNode, 0);
+            if (index > -1) {
+                this.files.splice(index, 1);
+            }
+        } else {
+            var parentNode:FileNode = this.findNodeById(parentId, this.files);
+            var index = parentNode.children.indexOf(this.selectedNode, 0);
+            if (index > -1) {
+                parentNode.children.splice(index, 1);
+            }
+        }
     }
 }
