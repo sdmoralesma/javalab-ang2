@@ -58,7 +58,7 @@ export class FileManagerComponent {
         }
 
         var parentId = this.selectedNode.parentId;
-        if (parentId == "" || parentId == null) {
+        if (parentId === "" || parentId === null) {
             newFolder.parentId = this.selectedNode.id;
             this.files.push(newFolder);
             return;
@@ -87,7 +87,7 @@ export class FileManagerComponent {
         }
 
         var parentId = this.selectedNode.parentId;
-        if (parentId == "" || parentId == null) {
+        if (parentId === "" || parentId === null) {
             newFile.parentId = this.selectedNode.id;
             this.files.push(newFile);
             return;
@@ -112,11 +112,11 @@ export class FileManagerComponent {
     }
 
     private searchNode(id:string, node:FileNode) {
-        if (node.id == id) {
+        if (node.id === id) {
             return node;
         } else if (node.children != null) {
             var result = null;
-            for (var i = 0; result == null && i < node.children.length; i++) {
+            for (var i = 0; result === null && i < node.children.length; i++) {
                 result = this.searchNode(id, node.children[i]);
             }
             return result;
@@ -134,7 +134,7 @@ export class FileManagerComponent {
 
     deleteItem() {
         var parentId = this.selectedNode.parentId;
-        if (parentId == "" || parentId == null) {
+        if (parentId === "" || parentId === null) {
             var index = this.files.indexOf(this.selectedNode, 0);
             if (index > -1) {
                 this.files.splice(index, 1);
