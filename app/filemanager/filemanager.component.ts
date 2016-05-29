@@ -141,14 +141,13 @@ export class FileManagerComponent {
     }
 
     deleteItem() {
-        var parentId = this.selectedNode.parentId;
-        if (parentId === null) {
+        if (this.selectedNode.parentId === undefined) {
             var index = this.files.indexOf(this.selectedNode, 0);
             if (index > -1) {
                 this.files.splice(index, 1);
             }
         } else {
-            var parentNode:FileNode = this.findNodeById(parentId, this.files);
+            var parentNode:FileNode = this.findNodeById(this.selectedNode.parentId, this.files);
             var index = parentNode.children.findIndex((child) => child.id === this.selectedNode.id);
             if (index > -1) {
                 parentNode.children.splice(index, 1);
