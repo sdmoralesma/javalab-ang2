@@ -52,23 +52,17 @@ export class FileManagerComponent {
             "children": []
         };
 
-        if (this.selectedNode === null) {
+        if (this.selectedNode === null || this.selectedNode.parentId === undefined) {
             this.files.push(newFolder);
             return;
         }
 
-        var parentId = this.selectedNode.parentId;
-        if (parentId === "" || parentId === null) {
-            newFolder.parentId = this.selectedNode.id;
-            this.files.push(newFolder);
-            return;
-        }
-
-        var parentNode:FileNode = this.findNodeById(parentId, this.files);
-        newFolder.parentId = parentNode.id;
+        var parentNode:FileNode = this.findNodeById(this.selectedNode.parentId, this.files);
         if (this.selectedNode.icon === FILE_CLASS) {
+            newFolder.parentId = parentNode.id;
             parentNode.children.push(newFolder);
         } else { // is a folder
+            newFolder.parentId = this.selectedNode.id;
             this.selectedNode.children.push(newFolder);
         }
     }
@@ -81,13 +75,13 @@ export class FileManagerComponent {
             "data": ""
         };
 
-        if (this.selectedNode === null) {
+        if (this.selectedNode === null || this.selectedNode.parentId === undefined) {
             this.files.push(newFile);
             return;
         }
 
         var parentId = this.selectedNode.parentId;
-        if (parentId === "" || parentId === null) {
+        if (parentId === null) {
             newFile.parentId = this.selectedNode.id;
             this.files.push(newFile);
             return;
@@ -105,7 +99,7 @@ export class FileManagerComponent {
     private findNodeById(id:string, tree:FileNode[]):FileNode {
         for (var node of tree) {
             var found = this.searchNode(id, node);
-            if (found != null) {
+            if (found !== null) {
                 return found;
             }
         }
@@ -114,7 +108,7 @@ export class FileManagerComponent {
     private searchNode(id:string, node:FileNode) {
         if (node.id === id) {
             return node;
-        } else if (node.children != null) {
+        } else if (node.children !== null) {
             var result = null;
             for (var i = 0; result === null && i < node.children.length; i++) {
                 result = this.searchNode(id, node.children[i]);
@@ -134,14 +128,14 @@ export class FileManagerComponent {
 
     deleteItem() {
         var parentId = this.selectedNode.parentId;
-        if (parentId === "" || parentId === null) {
+        if (parentId === null) {
             var index = this.files.indexOf(this.selectedNode, 0);
             if (index > -1) {
                 this.files.splice(index, 1);
             }
         } else {
             var parentNode:FileNode = this.findNodeById(parentId, this.files);
-            var index = parentNode.children.indexOf(this.selectedNode, 0);
+            var index = parentNode.children.findIndex((child) => child.id === this.selectedNode.id);
             if (index > -1) {
                 parentNode.children.splice(index, 1);
             }
