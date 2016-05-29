@@ -35,11 +35,11 @@ export class FileManagerComponent {
     files:FileNode[];
 
     //events
-    @Output() updateCode = new EventEmitter();
+    @Output() fileSelected = new EventEmitter<any>();
 
     nodeSelect(event) {
         if (this.selectedNode.icon === FILE_CLASS) {
-            this.updateCode.emit({value: this.selectedNode.data});
+            this.fileSelected.emit({value: this.selectedNode.data});
         }
     }
 

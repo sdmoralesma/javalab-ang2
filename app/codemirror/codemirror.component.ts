@@ -1,4 +1,4 @@
-import {Component, OnInit, ElementRef, OnChanges, AfterViewInit} from "@angular/core";
+import {Component, OnInit, ElementRef, OnChanges, AfterViewInit, Output, EventEmitter} from "@angular/core";
 
 @Component({
     selector: 'codemirror',
@@ -9,6 +9,9 @@ export class CodeMirrorComponent implements OnInit,OnChanges, AfterViewInit {
     height:number;
     editor:CodeMirror.Editor;
     editorNativeElement:any;
+
+    //events
+    @Output() fileContentChanged = new EventEmitter();
 
     constructor(elRef:ElementRef) {
         this.editorNativeElement = elRef.nativeElement;
@@ -28,8 +31,8 @@ export class CodeMirrorComponent implements OnInit,OnChanges, AfterViewInit {
         this.editor.setSize("75%", "595px");
         this.editor.setOption("matchbrackets", true);
         this.editor.on('change', (editor:CodeMirror.Editor) => {
-            var value = this.editor.getDoc().getValue();
-            console.log("Value changed!");
+            var content = this.editor.getDoc().getValue();
+            this.fileContentChanged.emit({value: content})
         });
     }
 

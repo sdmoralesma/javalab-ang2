@@ -9,7 +9,7 @@
 
         <div class="ui-grid-row">
             <div class="ui-grid-col-3">
-                <filemanager (updateCode)="showCode($event)"></filemanager>
+                <filemanager (fileSelected)="showFileContent($event)"></filemanager>
 
                 <description></description>
 
@@ -17,7 +17,7 @@
             </div>
 
             <div class="ui-grid-col-9">
-                <codemirror></codemirror>
+                <codemirror (fileContentChanged)="updateFileContent($event)"></codemirror>
             </div>
         </div>
 

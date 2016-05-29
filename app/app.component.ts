@@ -79,7 +79,11 @@ export class AppComponent implements OnInit, AfterViewInit {
         this.terminal.updateHeight(consoleHeight);
     }
 
-    showCode(response) {
-        this.editor.updateCode(response.value);
+    showFileContent(event) {
+        this.editor.updateCode(event.value);
+    }
+    
+    updateFileContent(event){
+        this.filemanager.selectedNode.data = event.value;
     }
 }
