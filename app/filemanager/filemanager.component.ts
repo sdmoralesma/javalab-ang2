@@ -122,7 +122,7 @@ export class FileManagerComponent {
     private searchNode(id:string, node:FileNode) {
         if (node.id === id) {
             return node;
-        } else if (node.children !== null) {
+        } else if (node.children !== null && node.children !== undefined) {
             var result = null;
             for (var i = 0; result === null && i < node.children.length; i++) {
                 result = this.searchNode(id, node.children[i]);
