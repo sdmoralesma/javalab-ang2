@@ -26,3 +26,14 @@ mkdir -p dist/node_modules/codemirror/mode/clike/ && cp node_modules/codemirror/
 
 
 #Import javascript files
+find . -name '*.js' -exec cp --parents \{\} dist/ \;
+find . -name '*.html' -exec cp --parents \{\} dist/ \;
+find . -name '*.css' -exec cp --parents \{\} dist/ \;
+cd dist/; rm -rf dist/; cd ../
+
+
+#Import more files
+cd dist/; rm -rf assets/; cd ../
+cp -R assets/ dist/assets/
+
+
