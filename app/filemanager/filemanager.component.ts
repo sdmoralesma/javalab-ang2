@@ -52,8 +52,18 @@ export class FileManagerComponent {
             "children": []
         };
 
-        if (this.selectedNode === null || this.selectedNode.parentId === undefined) {
+        if (this.selectedNode === null) {
             this.files.push(newFolder);
+            return;
+        }
+
+        if (this.selectedNode.parentId === undefined) {
+            if (this.selectedNode.icon === FILE_CLASS) {
+                this.files.push(newFolder);
+            } else {
+                newFolder.parentId = this.selectedNode.id;
+                this.selectedNode.children.push(newFolder);
+            }
             return;
         }
 
@@ -75,23 +85,27 @@ export class FileManagerComponent {
             "data": ""
         };
 
-        if (this.selectedNode === null || this.selectedNode.parentId === undefined) {
+        if (this.selectedNode === null) {
             this.files.push(newFile);
             return;
         }
 
-        var parentId = this.selectedNode.parentId;
-        if (parentId === null) {
-            newFile.parentId = this.selectedNode.id;
-            this.files.push(newFile);
+        if (this.selectedNode.parentId === undefined) {
+            if (this.selectedNode.icon === FILE_CLASS) {
+                this.files.push(newFile);
+            } else {
+                newFile.parentId = this.selectedNode.id;
+                this.selectedNode.children.push(newFile);
+            }
             return;
         }
 
-        var parentNode:FileNode = this.findNodeById(parentId, this.files);
-        newFile.parentId = parentNode.id;
+        var parentNode:FileNode = this.findNodeById(this.selectedNode.parentId, this.files);
         if (this.selectedNode.icon === FILE_CLASS) {
+            newFile.parentId = parentNode.id;
             parentNode.children.push(newFile);
         } else { // is a folder
+            newFile.parentId = this.selectedNode.id;
             this.selectedNode.children.push(newFile);
         }
     }
