@@ -16,7 +16,7 @@ import {HeroListComponent} from "./hero-list/hero-list.component";
     providers: [JavalabService]
 })
 @Routes([
-    {path: '/heroes', component: HeroListComponent},
+    {path: '/heroes', component: HeroListComponent}
 ])
 export class AppComponent implements OnInit, AfterViewInit {
 
@@ -46,7 +46,7 @@ export class AppComponent implements OnInit, AfterViewInit {
             e.cancelBubble = true;
             e.returnValue = 'Code not saved!';
         };
-    };
+    }
 
     initializeApplication() {
         this.initialData = this.javalabService.getMockResponse();
