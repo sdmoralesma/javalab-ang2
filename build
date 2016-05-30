@@ -15,7 +15,6 @@ mkdir -p dist/node_modules/es6-shim/ && cp node_modules/es6-shim/es6-shim.min.js
 mkdir -p dist/node_modules/zone.js/dist/ && cp node_modules/zone.js/dist/zone.js "$_"
 mkdir -p dist/node_modules/reflect-metadata/ && cp node_modules/reflect-metadata/Reflect.js "$_"
 mkdir -p dist/node_modules/systemjs/dist/ && cp node_modules/systemjs/dist/system.src.js "$_"
-mkdir -p dist/node_modules/primeui/ && cp node_modules/primeui/primeui-ng-all.js "$_"
 
 #<!--CodeMirror setup-->
 mkdir -p dist/node_modules/codemirror/lib/ && cp node_modules/codemirror/lib/codemirror.js "$_"
