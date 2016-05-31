@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild, AfterViewInit, ChangeDetectorRef} from "@angular/core";
+import {Component, OnInit, ViewChild} from "@angular/core";
 import {NavBarComponent} from "./nav-bar/navbar.component";
 import {TagsComponent} from "./tags/tags.component";
 import {JavalabService} from "./javalab.service";
@@ -12,15 +12,14 @@ import {HeroListComponent} from "./hero-list/hero-list.component";
 @Component({
     selector: 'javalab-app',
     templateUrl: './app/app.html',
-    directives: [DescriptionComponent, FileManagerComponent, NavBarComponent, TagsComponent, TerminalComponent, CodeMirrorComponent, ROUTER_DIRECTIVES],
-    providers: [JavalabService]
+    directives: [DescriptionComponent, FileManagerComponent, NavBarComponent, TagsComponent, TerminalComponent, CodeMirrorComponent, ROUTER_DIRECTIVES]
 })
 @Routes([
     {path: '/heroes', component: HeroListComponent}
 ])
-export class AppComponent implements OnInit, AfterViewInit {
+export class AppComponent implements OnInit {
 
-    initialData:any;
+    errorMessage:any;
     height:number;
 
     @ViewChild(TerminalComponent)
@@ -35,7 +34,7 @@ export class AppComponent implements OnInit, AfterViewInit {
     @ViewChild(FileManagerComponent)
     filemanager:FileManagerComponent;
 
-    constructor(private javalabService:JavalabService, private changeDetectionRef:ChangeDetectorRef) {
+    constructor(private javalabService:JavalabService) {
         //this.attachWindowEvents(); //TODO: activate on prod
     }
 
@@ -48,19 +47,13 @@ export class AppComponent implements OnInit, AfterViewInit {
         };
     }
 
-    initializeApplication() {
-        this.initialData = this.javalabService.getMockResponse();
-    }
-
     ngOnInit() {
-        this.initializeApplication();
+        this.javalabService.getMockResponse()
+            .subscribe(
+                data => this.filemanager.files = data.filesTree,
+                error => this.errorMessage = <any>error
+            );
     }
-
-    ngAfterViewInit():any {
-        this.filemanager.files = this.initialData.filesTree;
-        this.changeDetectionRef.detectChanges();
-    }
-
 
     onResize(event) {
         var minWidthDesktop = 980;
@@ -82,8 +75,8 @@ export class AppComponent implements OnInit, AfterViewInit {
     showFileContent(event) {
         this.editor.updateCode(event.value);
     }
-    
-    updateFileContent(event){
+
+    updateFileContent(event) {
         this.filemanager.selectedNode.data = event.value;
     }
 }
