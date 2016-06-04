@@ -25,7 +25,7 @@
     "rxjs": "5.0.0-beta.6",
     "zone.js": "^0.6.12",
     "angular2-in-memory-web-api": "0.0.7",
-    "primeng": "1.0.0-beta.7",
+    "primeng": "1.0.0-beta.8",
     "primeui": "4.1.11",
     "codemirror": "5.15.2"
   },
