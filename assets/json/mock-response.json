@@ -59,22 +59,12 @@
       ]
     }
   ],
-  "runnableNode": {
-    "mainClass": false,
-    "testClass": false
-  },
-  "initConfig": {
+  "config": {
     "language": "java",
-    "languageMode": "ace/mode/java",
+    "languageMode": "c-like",
     "javaClasses": [
-      {
-        "label": "HelloWorld.java",
-        "path": "com.company.project.HelloWorld"
-      },
-      {
-        "label": "HelloWorldTest.java",
-        "path": "com.company.project.HelloWorldTest"
-      }
+      "e597e833-8f97-4a13-b119-71a3b093aecc",
+      "d45d9ee5-d049-4e46-8ee4-f6abe6ad6fe6"
     ]
   }
 }
