@@ -50,7 +50,10 @@ export class AppComponent implements OnInit {
     ngOnInit() {
         this.javalabService.getMockResponse()
             .subscribe(
-                data => this.filemanager.files = data.filesTree,
+                data => {
+                    this.filemanager.files = data.filesTree;
+                    this.navBar.options = data.config.javaClasses;
+                },
                 error => this.errorMessage = <any>error
             );
     }
@@ -62,10 +65,9 @@ export class AppComponent implements OnInit {
         }
 
         var windowHeight = window.innerHeight;
-        var extNavHeight = this.navBar.height;
         //  Define height for each element based on %
-        var codeEditorHeight = (windowHeight * 0.75) - extNavHeight;
-        var consoleHeight = (windowHeight * 0.25) - extNavHeight;
+        var codeEditorHeight = (windowHeight * 0.75);
+        var consoleHeight = (windowHeight * 0.25);
 
         // resize elements
         this.editor.updateHeight(codeEditorHeight);
