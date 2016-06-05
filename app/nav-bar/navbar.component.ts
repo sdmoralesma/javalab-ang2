@@ -17,10 +17,10 @@ export class NavBarComponent {
         this.suggestions = this.filterOptions(query, this.options);
     }
 
-    private filterOptions(query, countries:string[]):string[] {
+    private filterOptions(query, options:string[]):string[] {
         let filtered:any[] = [];
-        for (let i = 0; i < countries.length; i++) {
-            let country = countries[i];
+        for (let i = 0; i < options.length; i++) {
+            let country = options[i];
             if (country.toLowerCase().indexOf(query.toLowerCase()) == 0) {
                 filtered.push(country);
             }
