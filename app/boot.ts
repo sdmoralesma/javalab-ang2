@@ -5,9 +5,9 @@ import {ROUTER_PROVIDERS} from "@angular/router";
 import {provide} from "@angular/core";
 import {APP_BASE_HREF} from "@angular/common";
 import {HTTP_PROVIDERS} from "@angular/http";
-import {CountryService} from "./country.service";
+import {TagService} from "./tag.service";
 import {JavalabService} from "./javalab.service";
 
-bootstrap(AppComponent, [ROUTER_PROVIDERS, HTTP_PROVIDERS, CountryService, JavalabService,
+bootstrap(AppComponent, [ROUTER_PROVIDERS, HTTP_PROVIDERS, TagService, JavalabService,
     provide(APP_BASE_HREF, {useValue: '/'})
 ]);

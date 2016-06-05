@@ -1,6 +1,6 @@
 import {Component} from "@angular/core";
 import {AutoComplete, Panel} from "primeng/primeng";
-import {CountryService} from "../country.service";
+import {TagService} from "../tag.service";
 
 @Component({
     selector: 'tags',
@@ -9,27 +9,27 @@ import {CountryService} from "../country.service";
 })
 export class TagsComponent {
 
-    countries:any[];
-    filteredCountriesMultiple:any[];
+    selectedTags:any[];
+    tagsSuggested:any[];
     errorMessage:string;
 
-    constructor(private countryService:CountryService) {
+    constructor(private tagService:TagService) {
     }
 
-    filterCountryMultiple(event) {
+    filterTagsMultiple(event) {
         let query = event.query;
-        this.countryService.getCountries()
+        this.tagService.getTags()
             .subscribe(
-                countries => this.filteredCountriesMultiple = this.filterCountry(query, countries),
+                tags => this.tagsSuggested = this.filterTags(query, tags),
                 error => this.errorMessage = <any>error);
     }
 
-    filterCountry(query, countries:any[]):any[] {
-        let filtered:any[] = [];
-        for (let i = 0; i < countries.length; i++) {
-            let country = countries[i];
-            if (country.name.toLowerCase().indexOf(query.toLowerCase()) == 0) {
-                filtered.push(country);
+    private filterTags(query, tagList:string[]):string[] {
+        let filtered:string[] = [];
+        for (let i = 0; i < tagList.length; i++) {
+            let tag = tagList[i];
+            if (tag.toLowerCase().indexOf(query.toLowerCase()) == 0) {
+                filtered.push(tag);
             }
         }
         return filtered;

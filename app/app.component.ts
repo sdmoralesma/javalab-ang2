@@ -36,6 +36,9 @@ export class AppComponent implements OnInit {
     @ViewChild(FileManagerComponent)
     filemanager:FileManagerComponent;
 
+    @ViewChild(TagsComponent)
+    tagsComponent:TagsComponent;
+
     constructor(private javalabService:JavalabService) {
         //this.attachWindowEvents(); //TODO: activate on prod
     }
@@ -57,6 +60,7 @@ export class AppComponent implements OnInit {
                     this.navBar.options = data.config.javaClasses;
                     this.description.text = data.description;
                     this.terminal.welcomeMessage = data.terminal;
+                    this.tagsComponent.selectedTags = data.tags;
                 },
                 error => this.errorMessage = <any>error
             );

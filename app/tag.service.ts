@@ -3,16 +3,16 @@ import {Http, Response} from "@angular/http";
 import {Observable} from "rxjs/Observable";
 
 @Injectable()
-export class CountryService {
+export class TagService {
 
-    private countriesURL = "assets/json/countries.json";
+    private tagsURL = "assets/json/taglist.json";
 
     constructor(private http:Http) {
     }
 
-    getCountries() {
-        return this.http.get(this.countriesURL)
-            .map(res => <any[]> res.json().data)
+    getTags() {
+        return this.http.get(this.tagsURL)
+            .map(res => <string[]> res.json().data)
             .catch(this.handleError);
     }
 
