@@ -7,5 +7,5 @@ import {Header, InputTextarea, Panel} from "primeng/primeng";
     directives: [InputTextarea, Header, Panel]
 })
 export class DescriptionComponent {
-    descriptionText:string = "hello my fucking world!";
+    text:string;
 }

@@ -20,7 +20,10 @@ import {HeroListComponent} from "./hero-list/hero-list.component";
 export class AppComponent implements OnInit {
 
     errorMessage:any;
-    
+
+    @ViewChild(DescriptionComponent)
+    description:DescriptionComponent;
+
     @ViewChild(TerminalComponent)
     terminal:TerminalComponent;
 
@@ -52,6 +55,7 @@ export class AppComponent implements OnInit {
                 data => {
                     this.filemanager.files = data.filesTree;
                     this.navBar.options = data.config.javaClasses;
+                    this.description.text = data.description;
                     // this.terminal.
                 },
                 error => this.errorMessage = <any>error
