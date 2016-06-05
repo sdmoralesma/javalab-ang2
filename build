@@ -6,8 +6,8 @@
 # Remove previous content
 rm -rf dist/ && mkdir dist/
 
-#PrimeNG/PrimeUI CSS dependencies
-mkdir -p dist/node_modules/primeui/themes/bootstrap/ && cp -a node_modules/primeui/themes/bootstrap/ "$_"
+#PrimeUI CSS dependencies
+mkdir -p dist/node_modules/primeui/themes/ && cp -R node_modules/primeui/themes/bootstrap/ "$_"
 mkdir -p dist/node_modules/primeui/ && cp node_modules/primeui/primeui-ng-all.min.css "$_"
 
 #Load Angular libraries
@@ -16,9 +16,14 @@ mkdir -p dist/node_modules/zone.js/dist/ && cp node_modules/zone.js/dist/zone.js
 mkdir -p dist/node_modules/reflect-metadata/ && cp node_modules/reflect-metadata/Reflect.js "$_"
 mkdir -p dist/node_modules/systemjs/dist/ && cp node_modules/systemjs/dist/system.src.js "$_"
 
-#<!--CodeMirror setup-->
+#CodeMirror setup
 mkdir -p dist/node_modules/codemirror/lib/ && cp node_modules/codemirror/lib/codemirror.js "$_"
 mkdir -p dist/node_modules/codemirror/mode/clike/ && cp node_modules/codemirror/mode/clike/clike.js "$_"
+
+#Import Angular and friends
+find . -name '*.js' -path "./node_modules/@angular/*" -exec cp --parents \{\} dist/ \;
+find . -name '*.js' -path "./node_modules/primeng/*" -exec cp --parents \{\} dist/ \;
+find . -name '*.js' -path "./node_modules/rxjs/*" -exec cp --parents \{\} dist/ \;
 
 #Import files from project
 find . -name '*.js' -not -path "./node_modules/*" -exec cp --parents \{\} dist/ \;
@@ -32,6 +37,3 @@ rm -rf dist/dist/
 #Import assets files
 rm -rf dist/assets/
 cp -R assets/ dist/assets/
-
-#Import ALL node_modules :(
-#cp -R node_modules/ dist/node_modules
