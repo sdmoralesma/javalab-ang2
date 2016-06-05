@@ -20,8 +20,7 @@ import {HeroListComponent} from "./hero-list/hero-list.component";
 export class AppComponent implements OnInit {
 
     errorMessage:any;
-    height:number;
-
+    
     @ViewChild(TerminalComponent)
     terminal:TerminalComponent;
 
@@ -53,25 +52,10 @@ export class AppComponent implements OnInit {
                 data => {
                     this.filemanager.files = data.filesTree;
                     this.navBar.options = data.config.javaClasses;
+                    // this.terminal.
                 },
                 error => this.errorMessage = <any>error
             );
-    }
-
-    onResize(event) {
-        var minWidthDesktop = 980;
-        if (window.innerWidth < minWidthDesktop) {
-            return;
-        }
-
-        var windowHeight = window.innerHeight;
-        //  Define height for each element based on %
-        var codeEditorHeight = (windowHeight * 0.75);
-        var consoleHeight = (windowHeight * 0.25);
-
-        // resize elements
-        this.editor.updateHeight(codeEditorHeight);
-        this.terminal.updateHeight(consoleHeight);
     }
 
     showFileContent(event) {

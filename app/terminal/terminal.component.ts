@@ -8,12 +8,6 @@ import {Terminal} from "primeng/primeng";
 })
 export class TerminalComponent {
 
-    height:number;
-
-    updateHeight(height:number) {
-        this.height = height;
-    }
-
     response:string;
 
     onCommand(event) {
