@@ -56,7 +56,7 @@ export class AppComponent implements OnInit {
                     this.filemanager.files = data.filesTree;
                     this.navBar.options = data.config.javaClasses;
                     this.description.text = data.description;
-                    // this.terminal.
+                    this.terminal.welcomeMessage = data.terminal;
                 },
                 error => this.errorMessage = <any>error
             );

@@ -1,6 +1,6 @@
 {
   "description": "This is a nice description :)",
-  "console": "Welcome to Javalab v0.4.0 !\r\n$ java -version : 1.8.0_66 Java HotSpot(TM) 64-Bit Server VM",
+  "terminal": "Welcome to Javalab v0.4.0 !\r\n$ java -version : 1.8.0_66 Java HotSpot(TM) 64-Bit Server VM",
   "filesTree": [
     {
       "id": "e3c59fb7-f1fc-4d74-b0fb-d8b52d731287",
