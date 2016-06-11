@@ -9,8 +9,7 @@ export class CodeMirrorComponent implements OnInit,OnChanges, AfterViewInit {
     height:number;
     editor:CodeMirror.Editor;
     editorNativeElement:any;
-
-    //events
+    
     @Output() fileContentChanged = new EventEmitter();
 
     constructor(elRef:ElementRef) {

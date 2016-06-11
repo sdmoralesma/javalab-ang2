@@ -23,7 +23,7 @@ export interface FileNode {
 })
 export class FileManagerComponent {
 
-    //Dialog variables
+    // dialog variables
     displayNewFolder:boolean = false;
     displayNewFile:boolean = false;
     displayRename:boolean = false;
@@ -34,7 +34,6 @@ export class FileManagerComponent {
     selectedNode:FileNode = null;
     files:FileNode[];
 
-    //events
     @Output() fileSelected = new EventEmitter<any>();
 
     nodeSelect(event) {
