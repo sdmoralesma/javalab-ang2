@@ -5,7 +5,7 @@ import {Http, Response} from "@angular/http";
 export class JavalabService {
 
     private javalab = "assets/json/mock-response.json";
-    // private javalab = "localhost:48080/rest/process/new"; //TODO: fix CORS filter
+    // private javalab = "http://localhost:48080/rest/process/init/java";
 
     constructor(private http:Http) {
     }
