@@ -7,7 +7,7 @@ import {Terminal} from "primeng/primeng";
     directives: [Terminal]
 })
 export class TerminalComponent {
-    
+
     welcomeMessage:string;
     response:string;
 
@@ -31,7 +31,7 @@ export class TerminalComponent {
                 this.response = "javalab-user-" + this.randomIntFromInterval(1, 1000);
                 break;
             default:
-                this.response = "not implemented... yet";
+                this.response = "command not found: " + command;
                 break;
         }
     }
