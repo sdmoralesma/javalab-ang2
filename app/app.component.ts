@@ -19,8 +19,6 @@ import {HeroListComponent} from "./hero-list/hero-list.component";
 ])
 export class AppComponent implements OnInit {
 
-    errorMessage:any;
-
     @ViewChild(DescriptionComponent)
     description:DescriptionComponent;
 
@@ -39,6 +37,8 @@ export class AppComponent implements OnInit {
     @ViewChild(TagsComponent)
     tagsComponent:TagsComponent;
 
+    errorMessage:any;
+
     constructor(private javalabService:JavalabService) {
         //this.attachWindowEvents(); //TODO: activate on prod
     }
@@ -54,16 +54,15 @@ export class AppComponent implements OnInit {
 
     ngOnInit() {
         this.javalabService.getMockResponse()
-            .subscribe(
-                data => {
+            .subscribe(data => {
                     this.filemanager.files = data.filesTree;
                     this.navBar.options = data.config.javaClasses;
                     this.description.text = data.description;
                     this.terminal.welcomeMessage = data.terminal;
                     this.tagsComponent.selectedTags = data.tags;
+                    this.editor.config = data.config;
                 },
-                error => this.errorMessage = <any>error
-            );
+                error => this.errorMessage = <any>error);
     }
 
     showFileContent(event) {
@@ -71,6 +70,9 @@ export class AppComponent implements OnInit {
     }
 
     updateFileContent(event) {
+        if (this.filemanager.selectedNode === null) {
+            return;
+        }
         this.filemanager.selectedNode.data = event.value;
     }
 }
