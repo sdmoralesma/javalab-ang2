@@ -59,11 +59,26 @@ export class AppComponent implements OnInit {
 
 
         setTimeout(() => {// hacky, I know :(
-            this.filemanager.selectedNode = this.javalabService.findNodeById(this.javalabService.model.config.initialNode, this.javalabService.model.filesTree);
-            this.editor.editor.setValue(this.filemanager.selectedNode.data);
-            this.editor.editor.setOption("mode", this.model.config.languageMode);
+            this.initializeEditor();
+            this.initializeNavBar();
         }, 800);
+    }
 
+    private initializeEditor() {
+        this.filemanager.selectedNode = this.javalabService.findNodeById(this.javalabService.model.config.initialNode, this.javalabService.model.filesTree);
+        this.editor.editor.setValue(this.filemanager.selectedNode.data);
+        this.editor.editor.setOption("mode", this.model.config.languageMode);
+    }
+
+    private initializeNavBar() {
+        var optionsAsObjects = [];
+        for (var suggestionId of this.model.config.javaClasses) {
+            let found = this.javalabService.findNodeById(suggestionId, this.javalabService.model.filesTree);
+            optionsAsObjects.push(found);
+        }
+        this.navBar.options = optionsAsObjects;
+        this.navBar.options.push({"id": "all-tests","label": "all-tests"});
+        this.navBar.selected = this.filemanager.selectedNode;
     }
 
     showFileContent(event) {

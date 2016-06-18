@@ -1,20 +1,9 @@
 import {Component, Output, EventEmitter} from "@angular/core";
 import {Tree, Panel, Button, Toolbar, Dialog, InputText} from "primeng/primeng";
 import {UUID} from "./uuid";
+import {FileNode} from "../common";
 
 const FILE_CLASS:string = "fa-file-text-o";
-
-export interface FileNode {
-    id:string;
-    label?:string;
-    data?:any;
-    icon?:any;
-    expandedIcon?:any;
-    collapsedIcon?:any;
-    parentId?:string;
-    children?:FileNode[];
-    leaf?:boolean;
-}
 
 @Component({
     selector: 'filemanager',
