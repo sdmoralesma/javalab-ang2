@@ -48,12 +48,12 @@ export class AppComponent implements OnInit {
         this.javalabService.initialize()
             .then(data => {
                     this.model = data;
-                    this.filemanager.files = data.filesTree;
+                    this.filemanager.files = this.model.filesTree;
                     this.navBar.options = data.config.javaClasses;
-                    this.description.text = data.description;
-                    this.terminal.welcomeMessage = data.terminal;
-                    this.tagsComponent.selectedTags = data.tags;
-                    this.editor.config = data.config;
+                    this.description.text = this.model.description;
+                    this.terminal.welcomeMessage = this.model.terminal;
+                    this.tagsComponent.selectedTags = this.model.tags;
+                    this.editor.config = this.model.config;
                 },
                 error => this.errorMessage = error
             );
@@ -66,7 +66,7 @@ export class AppComponent implements OnInit {
     }
 
     private initializeEditor() {
-        this.filemanager.selectedNode = this.javalabService.findNodeById(this.javalabService.model.config.initialNode, this.javalabService.model.filesTree);
+        this.filemanager.selectedNode = this.javalabService.findNodeById(this.model.config.initialNode, this.model.filesTree);
         this.editor.editor.setValue(this.filemanager.selectedNode.data);
         this.editor.editor.setOption("mode", this.model.config.languageMode);
     }
@@ -74,7 +74,7 @@ export class AppComponent implements OnInit {
     private initializeNavBar() {
         var optionsAsObjects = [];
         for (var suggestionId of this.model.config.javaClasses) {
-            let found = this.javalabService.findNodeById(suggestionId, this.javalabService.model.filesTree);
+            let found = this.javalabService.findNodeById(suggestionId, this.model.filesTree);
             optionsAsObjects.push(found);
         }
         this.navBar.options = optionsAsObjects;

@@ -6,8 +6,6 @@ import {FileNode, GlobalModel} from "./common";
 @Injectable()
 export class JavalabService {
 
-    model;
-
     constructor(private http:Http) {
     }
 
@@ -16,11 +14,7 @@ export class JavalabService {
         let url = "http://localhost:48080/rest/process/init/java";
         return this.http.get(url)
             .toPromise()
-            .then(res => {
-                let json = res.json();
-                this.model = json;
-                return json;
-            })
+            .then(res => res.json())
             .catch(this.handleError);
     }
 
