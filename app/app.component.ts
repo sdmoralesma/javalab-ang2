@@ -8,6 +8,7 @@ import {TerminalComponent} from "./terminal/terminal.component";
 import {CodeMirrorComponent} from "./codemirror/codemirror.component";
 import {Routes, ROUTER_DIRECTIVES} from "@angular/router";
 import {HeroListComponent} from "./hero-list/hero-list.component";
+import {FileNode, GlobalModel} from "./common";
 
 @Component({
     selector: 'javalab-app',
@@ -38,7 +39,7 @@ export class AppComponent implements OnInit {
     tagsComponent:TagsComponent;
 
     errorMessage:any;
-    model:any;
+    model:GlobalModel;
 
     constructor(private javalabService:JavalabService) {
     }
@@ -77,7 +78,7 @@ export class AppComponent implements OnInit {
             optionsAsObjects.push(found);
         }
         this.navBar.options = optionsAsObjects;
-        this.navBar.options.push({"id": "all-tests","label": "all-tests"});
+        this.navBar.options.push({"id": "all-tests", "label": "all-tests"});
         this.navBar.selected = this.filemanager.selectedNode;
     }
 
@@ -90,5 +91,13 @@ export class AppComponent implements OnInit {
             return;
         }
         this.filemanager.selectedNode.data = event.value;
+    }
+
+    runCode($event:FileNode) {
+        this.javalabService.runCode(this.model);
+    }
+
+    testCode($event:FileNode) {
+        this.javalabService.runCode(this.model);
     }
 }

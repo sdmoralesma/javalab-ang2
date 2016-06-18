@@ -1,7 +1,7 @@
 import {Injectable} from "@angular/core";
 import {Http, Headers, RequestOptions} from "@angular/http";
-import {FileNode} from "./filemanager/filemanager.component";
 import "rxjs/add/operator/toPromise";
+import {FileNode, GlobalModel} from "./common";
 
 @Injectable()
 export class JavalabService {
@@ -12,8 +12,8 @@ export class JavalabService {
     }
 
     initialize() {
-        let url = "assets/json/mock-response.json";
-        //  let url = "http://localhost:48080/rest/process/init/java";
+        // let url = "assets/json/mock-response.json";
+        let url = "http://localhost:48080/rest/process/init/java";
         return this.http.get(url)
             .toPromise()
             .then(res => {
@@ -24,10 +24,15 @@ export class JavalabService {
             .catch(this.handleError);
     }
 
-    runCode(param) {
+    private handleError(error:any) {
+        console.error("An error occurred:", error);
+        return Promise.reject(error.message || error);
+    }
+
+    runCode(model:GlobalModel) {
         let runCodeURL = "http://localhost:48080/rest/process/run";
 
-        let body = JSON.stringify({param});
+        let body = JSON.stringify({model});
         let headers = new Headers({'Content-Type': 'application/json'});
         let options = new RequestOptions({headers: headers});
 
@@ -37,10 +42,19 @@ export class JavalabService {
             .catch(error => this.handleError);
     }
 
-    private handleError(error:any) {
-        console.error("An error occurred:", error);
-        return Promise.reject(error.message || error);
+    testCode(model:GlobalModel) {
+        let runCodeURL = "http://localhost:48080/rest/process/run";
+
+        let body = JSON.stringify({model});
+        let headers = new Headers({'Content-Type': 'application/json'});
+        let options = new RequestOptions({headers: headers});
+
+        return this.http.post(runCodeURL, body, options)
+            .toPromise()
+            .then(res => res.json())
+            .catch(error => this.handleError);
     }
+
 
     findNodeById(id:string, tree:FileNode[]):FileNode {
         for (var node of tree) {

@@ -1,4 +1,4 @@
-import {Component} from "@angular/core";
+import {Component, EventEmitter, Output} from "@angular/core";
 import {AutoComplete, Button, SplitButton, SplitButtonItem, Toolbar} from "primeng/primeng";
 import {FileNode} from "../common";
 
@@ -12,6 +12,9 @@ export class NavBarComponent {
     selected:FileNode;
     suggestions:FileNode[];
     options:FileNode[];
+
+    @Output() runCodeClicked = new EventEmitter();
+    @Output() testCodeClicked = new EventEmitter();
 
     search(event) {
         let query = event.query;
@@ -29,19 +32,19 @@ export class NavBarComponent {
         return filtered;
     }
 
-    download() {
-        alert("Downloading project!");
-    }
-
     handleDropdownClick($event) {
         this.suggestions = this.options;
     }
 
     runCode() {
-        alert("running code");
+        this.runCodeClicked.emit(this.selected);
     }
 
     testCode() {
-        alert("testing: " + this.selected);
+        this.testCodeClicked.emit(this.selected);
+    }
+
+    download() {
+        alert("Downloading project!");
     }
 }
