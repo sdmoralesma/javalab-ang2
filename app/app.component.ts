@@ -38,23 +38,15 @@ export class AppComponent implements OnInit {
     tagsComponent:TagsComponent;
 
     errorMessage:any;
+    model:any;
 
     constructor(private javalabService:JavalabService) {
-        //this.attachWindowEvents(); //TODO: activate on prod
-    }
-
-    private attachWindowEvents() {
-        window.onbeforeunload = (e) => {
-            e = e || window.event;
-            e.preventDefault();
-            e.cancelBubble = true;
-            e.returnValue = 'Code not saved!';
-        };
     }
 
     ngOnInit() {
-        this.javalabService.getMockResponse()
-            .subscribe(data => {
+        this.javalabService.initialize()
+            .then(data => {
+                    this.model = data;
                     this.filemanager.files = data.filesTree;
                     this.navBar.options = data.config.javaClasses;
                     this.description.text = data.description;
@@ -62,7 +54,16 @@ export class AppComponent implements OnInit {
                     this.tagsComponent.selectedTags = data.tags;
                     this.editor.config = data.config;
                 },
-                error => this.errorMessage = <any>error);
+                error => this.errorMessage = error
+            );
+
+
+        setTimeout(() => {// hacky, I know :(
+            this.filemanager.selectedNode = this.javalabService.findNodeById(this.javalabService.model.config.initialNode, this.javalabService.model.filesTree);
+            this.editor.editor.setValue(this.filemanager.selectedNode.data);
+            this.editor.editor.setOption("mode", this.model.config.languageMode);
+        }, 800);
+
     }
 
     showFileContent(event) {

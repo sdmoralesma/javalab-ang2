@@ -37,7 +37,7 @@ export class NavBarComponent {
     }
 
     runCode() {
-        alert("running: " + this.selected);
+        alert("running code");
     }
 
     testCode() {

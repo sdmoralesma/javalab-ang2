@@ -24,7 +24,7 @@ export class CodeMirrorComponent implements AfterViewInit {
         let config:CodeMirror.EditorConfiguration = {
             mode: "text/x-java",
             lineNumbers: true,
-            value: ""
+            value: "default text; // if you are reading this there was a problem :("
         };
 
         this.editor = CodeMirror(this.editorNativeElement, config);
@@ -41,8 +41,6 @@ export class CodeMirrorComponent implements AfterViewInit {
     }
 
     updateCode(newCode:string) {
-        this.editor.setValue(this.config.value);
-        this.editor.setOption("mode", this.config.languageMode);
         this.editor.setValue(newCode);
     }
 }
