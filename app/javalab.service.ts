@@ -25,8 +25,7 @@ export class JavalabService {
 
     runCode(model:GlobalModel) {
         let runCodeURL = "http://localhost:48080/rest/process/run";
-
-        let body = JSON.stringify({model});
+        let body = JSON.stringify(model);
         let headers = new Headers({'Content-Type': 'application/json'});
         let options = new RequestOptions({headers: headers});
 
@@ -38,8 +37,7 @@ export class JavalabService {
 
     testCode(model:GlobalModel) {
         let runCodeURL = "http://localhost:48080/rest/process/run";
-
-        let body = JSON.stringify({model});
+        let body = JSON.stringify(model);
         let headers = new Headers({'Content-Type': 'application/json'});
         let options = new RequestOptions({headers: headers});
 
