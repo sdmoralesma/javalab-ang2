@@ -98,6 +98,6 @@ export class AppComponent implements OnInit {
     }
 
     testCode($event:FileNode) {
-        this.javalabService.runCode(this.model);
+        this.javalabService.testCode(this.model);
     }
 }
