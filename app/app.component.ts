@@ -6,8 +6,7 @@ import {DescriptionComponent} from "./description/description.component";
 import {FileManagerComponent} from "./filemanager/filemanager.component";
 import {TerminalComponent} from "./terminal/terminal.component";
 import {CodeMirrorComponent} from "./codemirror/codemirror.component";
-import {Routes, ROUTER_DIRECTIVES} from "@angular/router";
-import {HeroListComponent} from "./hero-list/hero-list.component";
+import {ROUTER_DIRECTIVES} from "@angular/router";
 import {FileNode, GlobalModel} from "./common";
 
 @Component({
@@ -15,9 +14,6 @@ import {FileNode, GlobalModel} from "./common";
     templateUrl: './app/app.html',
     directives: [DescriptionComponent, FileManagerComponent, NavBarComponent, TagsComponent, TerminalComponent, CodeMirrorComponent, ROUTER_DIRECTIVES]
 })
-@Routes([
-    {path: '/heroes', component: HeroListComponent}
-])
 export class AppComponent implements OnInit {
 
     @ViewChild(DescriptionComponent)
