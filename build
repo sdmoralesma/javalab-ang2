@@ -11,7 +11,7 @@ mkdir -p dist/node_modules/primeui/themes/ && cp -R node_modules/primeui/themes/
 mkdir -p dist/node_modules/primeui/ && cp node_modules/primeui/primeui-ng-all.min.css "$_"
 
 #Load Angular libraries
-mkdir -p dist/node_modules/es6-shim/ && cp node_modules/es6-shim/es6-shim.min.js "$_"
+mkdir -p dist/node_modules/core-js/client/ && cp node_modules/core-js/client/shim.min.js "$_"
 mkdir -p dist/node_modules/zone.js/dist/ && cp node_modules/zone.js/dist/zone.js "$_"
 mkdir -p dist/node_modules/reflect-metadata/ && cp node_modules/reflect-metadata/Reflect.js "$_"
 mkdir -p dist/node_modules/systemjs/dist/ && cp node_modules/systemjs/dist/system.src.js "$_"
