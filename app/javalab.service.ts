@@ -10,8 +10,8 @@ export class JavalabService {
     }
 
     initialize() {
-        // let url = "assets/json/mock-response.json";
-        let url = "http://localhost:48080/rest/process/init/java";
+        let url = "assets/json/mock-response.json";
+        // let url = "http://localhost:48080/rest/process/init/java";
         return this.http.get(url)
             .toPromise()
             .then(res => res.json())
