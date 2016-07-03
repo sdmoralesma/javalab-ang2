@@ -20,6 +20,9 @@ mkdir -p dist/node_modules/systemjs/dist/ && cp node_modules/systemjs/dist/syste
 mkdir -p dist/node_modules/codemirror/lib/ && cp node_modules/codemirror/lib/codemirror.js "$_"
 mkdir -p dist/node_modules/codemirror/mode/clike/ && cp node_modules/codemirror/mode/clike/clike.js "$_"
 
+#Filesaver.js
+mkdir -p dist/node_modules/file-saver/ && cp node_modules/file-saver/FileSaver.js "$_"
+
 #Import Angular and friends
 find . -name '*.js' -path "./node_modules/@angular/*" -exec cp --parents \{\} dist/ \;
 find . -name '*.js' -path "./node_modules/primeng/*" -exec cp --parents \{\} dist/ \;
