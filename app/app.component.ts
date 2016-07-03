@@ -74,7 +74,6 @@ export class AppComponent implements OnInit {
             optionsAsObjects.push(found);
         }
         this.navBar.options = optionsAsObjects;
-        this.navBar.options.push({"id": "all-tests", "label": "all-tests"});
         this.navBar.selected = this.filemanager.selectedNode;
     }
 

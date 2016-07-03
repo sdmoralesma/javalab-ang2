@@ -34,7 +34,12 @@ export class NavBarComponent {
     }
 
     handleDropdownClick($event) {
-        this.suggestions = this.options;
+        this.suggestions = [];
+
+        //mimic remote call
+        setTimeout(() => {
+            this.suggestions = this.options;
+        }, 100);
     }
 
     runCode() {
