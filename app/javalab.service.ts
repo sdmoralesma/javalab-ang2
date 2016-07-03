@@ -12,7 +12,6 @@ export class JavalabService {
     }
 
     initialize() {
-        // let url = "assets/json/mock-response.json";
         let url = BASE + "/init/java";
         return this.http.get(url)
             .toPromise()

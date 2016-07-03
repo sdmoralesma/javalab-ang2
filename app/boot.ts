@@ -6,7 +6,7 @@ import {TagService} from "./tag.service";
 import {JavalabService} from "./javalab.service";
 import {enableProdMode} from "@angular/core";
 
-// enableProdMode();
+enableProdMode();
 bootstrap(AppComponent, [
     HTTP_PROVIDERS,
     TagService,
