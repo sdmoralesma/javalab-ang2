@@ -108,6 +108,6 @@ export class AppComponent implements OnInit {
     }
 
     download() {
-        this.javalabService.download(this.model)
+        this.javalabService.download(this.model);
     }
 }

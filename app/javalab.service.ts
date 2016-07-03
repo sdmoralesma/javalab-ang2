@@ -3,6 +3,8 @@ import {Http, Headers, RequestOptions} from "@angular/http";
 import "rxjs/add/operator/toPromise";
 import {FileNode, GlobalModel} from "./common";
 
+const BASE = "http://localhost:48080/rest/process";
+
 @Injectable()
 export class JavalabService {
 
@@ -10,8 +12,8 @@ export class JavalabService {
     }
 
     initialize() {
-        let url = "assets/json/mock-response.json";
-        // let url = "http://localhost:48080/rest/process/init/java";
+        // let url = "assets/json/mock-response.json";
+        let url = BASE + "/init/java";
         return this.http.get(url)
             .toPromise()
             .then(res => res.json())
@@ -24,7 +26,7 @@ export class JavalabService {
     }
 
     runCode(model:GlobalModel) {
-        let runCodeURL = "http://localhost:48080/rest/process/run";
+        let runCodeURL = BASE + "/run";
         let body = JSON.stringify(model);
         let headers = new Headers({'Content-Type': 'application/json'});
         let options = new RequestOptions({headers: headers});
@@ -36,7 +38,7 @@ export class JavalabService {
     }
 
     testCode(model:GlobalModel) {
-        let testCodeURL = "http://localhost:48080/rest/process/test";
+        let testCodeURL = BASE + "/test";
         let body = JSON.stringify(model);
         let headers = new Headers({'Content-Type': 'application/json'});
         let options = new RequestOptions({headers: headers});
@@ -72,13 +74,35 @@ export class JavalabService {
 
 
     download(model:GlobalModel) {
-        let downloadURL = "http://localhost:48080/rest/process/download";
-        let body = JSON.stringify(model);
-        let headers = new Headers({'Content-Type': 'application/json'});
-        let options = new RequestOptions({headers: headers});
+        // Xhr creates new context so we need to create reference to this
+        let self = this;
+        var pending:boolean = true;
 
-        return this.http.post(downloadURL, body, options)
-            .toPromise()
-            .catch(error => this.handleError);
+        // Create the Xhr request object
+        let xhr = new XMLHttpRequest();
+
+        let url = BASE + "/download";
+        xhr.open('POST', url, true);
+        xhr.setRequestHeader("Content-type", "application/json");
+        xhr.responseType = 'blob';
+
+        // Xhr callback when we get a result back
+        // We are not using arrow function because we need the 'this' context
+        xhr.onreadystatechange = function () {
+
+            // We use setTimeout to trigger change detection in Zones
+            setTimeout(() => {
+                pending = false;
+            }, 0);
+
+            // If we get an HTTP status OK (200), save the file using fileSaver
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                var blob = new Blob([this.response], {type: 'application/zip'});
+                saveAs(blob, 'project.zip');
+            }
+        };
+
+        // Start the Ajax request
+        xhr.send(JSON.stringify(model));
     }
 }
