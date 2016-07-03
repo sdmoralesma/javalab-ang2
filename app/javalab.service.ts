@@ -3,7 +3,7 @@ import {Http, Headers, RequestOptions} from "@angular/http";
 import "rxjs/add/operator/toPromise";
 import {FileNode, GlobalModel} from "./common";
 
-const BASE = "http://localhost:48080/rest/process";
+const BASE = "rest/process";
 
 @Injectable()
 export class JavalabService {
