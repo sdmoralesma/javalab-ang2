@@ -7,7 +7,7 @@ import {FileManagerComponent} from "./filemanager/filemanager.component";
 import {TerminalComponent} from "./terminal/terminal.component";
 import {CodeMirrorComponent} from "./codemirror/codemirror.component";
 import {ROUTER_DIRECTIVES} from "@angular/router";
-import {FileNode, GlobalModel} from "./common";
+import {GlobalModel} from "./common";
 
 @Component({
     selector: 'javalab-app',
@@ -89,11 +89,25 @@ export class AppComponent implements OnInit {
         this.filemanager.selectedNode.data = event.value;
     }
 
-    runCode($event:FileNode) {
-        this.javalabService.runCode(this.model);
+    runCode() {
+        this.javalabService.runCode(this.model)
+            .then(data => {
+                    this.terminal.response = data.output;
+                    this.model.terminal = data.output;
+                }, error => this.errorMessage = error
+            );
     }
 
-    testCode($event:FileNode) {
-        this.javalabService.testCode(this.model);
+    testCode() {
+        this.javalabService.testCode(this.model)
+            .then(data => {
+                    this.terminal.response = data.output;
+                    this.model.terminal = data.output;
+                }, error => this.errorMessage = error
+            );
+    }
+
+    download() {
+        this.javalabService.download(this.model)
     }
 }

@@ -15,6 +15,7 @@ export class NavBarComponent {
 
     @Output() runCodeClicked = new EventEmitter();
     @Output() testCodeClicked = new EventEmitter();
+    @Output() downloadClicked = new EventEmitter();
 
     search(event) {
         let query = event.query;
@@ -45,6 +46,6 @@ export class NavBarComponent {
     }
 
     download() {
-        alert("Downloading project!");
+        this.downloadClicked.emit("");
     }
 }

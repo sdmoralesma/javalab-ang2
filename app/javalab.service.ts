@@ -36,12 +36,12 @@ export class JavalabService {
     }
 
     testCode(model:GlobalModel) {
-        let runCodeURL = "http://localhost:48080/rest/process/test";
+        let testCodeURL = "http://localhost:48080/rest/process/test";
         let body = JSON.stringify(model);
         let headers = new Headers({'Content-Type': 'application/json'});
         let options = new RequestOptions({headers: headers});
 
-        return this.http.post(runCodeURL, body, options)
+        return this.http.post(testCodeURL, body, options)
             .toPromise()
             .then(res => res.json())
             .catch(error => this.handleError);
@@ -68,5 +68,17 @@ export class JavalabService {
             return result;
         }
         return null;
+    }
+
+
+    download(model:GlobalModel) {
+        let downloadURL = "http://localhost:48080/rest/process/download";
+        let body = JSON.stringify(model);
+        let headers = new Headers({'Content-Type': 'application/json'});
+        let options = new RequestOptions({headers: headers});
+
+        return this.http.post(downloadURL, body, options)
+            .toPromise()
+            .catch(error => this.handleError);
     }
 }
