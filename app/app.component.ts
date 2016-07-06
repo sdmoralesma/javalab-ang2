@@ -74,7 +74,7 @@ export class AppComponent implements OnInit {
             optionsAsObjects.push(found);
         }
         this.navBar.options = optionsAsObjects;
-        this.navBar.selected = this.filemanager.selectedNode;
+        this.navBar.selected = this.navBar.options[0];
     }
 
     showFileContent(event) {
@@ -93,6 +93,7 @@ export class AppComponent implements OnInit {
             .then(data => {
                     this.terminal.response = data.output;
                     this.model.terminal = data.output;
+                    this.navBar.displayDialog = false;
                 }, error => this.errorMessage = error
             );
     }
@@ -102,6 +103,7 @@ export class AppComponent implements OnInit {
             .then(data => {
                     this.terminal.response = data.output;
                     this.model.terminal = data.output;
+                    this.navBar.displayDialog = false;
                 }, error => this.errorMessage = error
             );
     }

@@ -11,8 +11,8 @@
         </p-autoComplete>
         <span style="margin-left:40px"></span>
 
-        <button pButton type="button" label="Run" data-icon="fa-play" (click)="runCode()"></button>
-        <button pButton type="button" label="Tests" data-icon="fa-check-square-o" (click)="testCode()"></button>
+        <button pButton type="button" label="Run" data-icon="fa-play" (click)="displayDialog=true; runCode()"></button>
+        <button pButton type="button" label="Tests" data-icon="fa-check-square-o" (click)="displayDialog=true; testCode()"></button>
         <button pButton type="button" label="Download" data-icon="fa-cloud-download" (click)="download()"></button>
     </div>
 
@@ -23,3 +23,7 @@
     </div>
 
 </p-toolbar>
+
+<p-dialog  header="Processing..." [(visible)]="displayDialog" modal="modal" [closable]="false" [showEffect]="fade"
+          [resizable]="false" [closeOnEscape]="false" [draggable]="false">
+</p-dialog>

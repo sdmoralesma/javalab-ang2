@@ -1,17 +1,19 @@
 import {Component, EventEmitter, Output} from "@angular/core";
-import {AutoComplete, Button, SplitButton, SplitButtonItem, Toolbar} from "primeng/primeng";
+import {AutoComplete, Button, Toolbar, Dialog} from "primeng/primeng";
 import {FileNode} from "../common";
 
 @Component({
     selector: 'nav-bar',
     templateUrl: './app/nav-bar/nav-bar.html',
     styleUrls: ['./app/nav-bar/nav-bar.css'],
-    directives: [AutoComplete, Toolbar, Button, SplitButton, SplitButtonItem]
+    directives: [AutoComplete, Toolbar, Button, Dialog]
 })
 export class NavBarComponent {
     selected:FileNode;
     suggestions:FileNode[];
     options:FileNode[];
+
+    displayDialog:boolean = false;
 
     @Output() runCodeClicked = new EventEmitter();
     @Output() testCodeClicked = new EventEmitter();
