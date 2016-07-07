@@ -2,7 +2,7 @@
 
     <div class="ui-toolbar-group-left">
         <h2 class="title">
-            <a href="http://javalab.co" class="title-link">javalab.co</a>
+            <a href="#" [routerLink]="['/']" class="title-link">javalab.co</a>
         </h2>
 
         <p-autoComplete [(model)]="selected" [suggestions]="suggestions" [minLength]="1" [size]="30" [dropdown]="true"
@@ -14,6 +14,10 @@
         <button pButton type="button" label="Run" data-icon="fa-play" (click)="displayDialog=true; runCode()"></button>
         <button pButton type="button" label="Tests" data-icon="fa-check-square-o" (click)="displayDialog=true; testCode()"></button>
         <button pButton type="button" label="Download" data-icon="fa-cloud-download" (click)="download()"></button>
+        <p-splitButton label="New" icon="fa-cloud-download" (onClick)="newWorkspace()" [url]="['java']">
+            <p-splitButtonItem icon="fa-file-archive-o" label="Jar" (onClick)="newWorkspace()" [url]="['scala']"></p-splitButtonItem>
+            <p-splitButtonItem icon="fa-file-archive-o" label="Zip" (onClick)="newWorkspace()" [url]="['groovy']"></p-splitButtonItem>
+        </p-splitButton>
     </div>
 
     <div class="ui-toolbar-group-right">

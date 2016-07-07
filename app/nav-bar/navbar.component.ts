@@ -1,12 +1,13 @@
 import {Component, EventEmitter, Output} from "@angular/core";
-import {AutoComplete, Button, Toolbar, Dialog} from "primeng/primeng";
+import {AutoComplete, Button, Toolbar, Dialog, SplitButton, SplitButtonItem} from "primeng/primeng";
 import {FileNode} from "../common";
+import {ROUTER_DIRECTIVES} from "@angular/router";
 
 @Component({
     selector: 'nav-bar',
     templateUrl: './app/nav-bar/nav-bar.html',
     styleUrls: ['./app/nav-bar/nav-bar.css'],
-    directives: [AutoComplete, Toolbar, Button, Dialog]
+    directives: [AutoComplete, Toolbar, Button, Dialog, SplitButton, SplitButtonItem, ROUTER_DIRECTIVES]
 })
 export class NavBarComponent {
     selected:FileNode;
@@ -54,5 +55,9 @@ export class NavBarComponent {
 
     download() {
         this.downloadClicked.emit("");
+    }
+
+    newWorkspace (){
+        alert("new");
     }
 }
