@@ -91,7 +91,7 @@ export class AppComponent implements OnInit {
     runCode() {
         this.javalabService.runCode(this.model)
             .then(data => {
-                    this.terminal.response = data.output;
+                    this.terminal.addResponseToTerminal(data.output);
                     this.model.terminal = data.output;
                     this.navBar.displayDialog = false;
                 }, error => this.errorMessage = error
@@ -101,7 +101,7 @@ export class AppComponent implements OnInit {
     testCode() {
         this.javalabService.testCode(this.model)
             .then(data => {
-                    this.terminal.response = data.output;
+                    this.terminal.addResponseToTerminal(data.output);
                     this.model.terminal = data.output;
                     this.navBar.displayDialog = false;
                 }, error => this.errorMessage = error
