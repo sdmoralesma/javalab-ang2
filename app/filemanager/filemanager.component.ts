@@ -1,4 +1,4 @@
-import {Component, Output, EventEmitter} from "@angular/core";
+import {Component, Output, EventEmitter, AfterViewInit, Renderer} from "@angular/core";
 import {Tree, Panel, Button, Toolbar, Dialog, InputText} from "primeng/primeng";
 import {UUID} from "./uuid";
 import {FileNode} from "../common";
@@ -10,7 +10,7 @@ const FILE_CLASS:string = "fa-file-text-o";
     templateUrl: './app/filemanager/filemanager.html',
     directives: [Tree, Panel, Toolbar, Button, Dialog, InputText]
 })
-export class FileManagerComponent {
+export class FileManagerComponent implements AfterViewInit {
 
     // dialog variables
     displayNewFolder:boolean = false;
@@ -24,6 +24,27 @@ export class FileManagerComponent {
     files:FileNode[];
 
     @Output() fileSelected = new EventEmitter<any>();
+
+    constructor(private renderer:Renderer) {
+    }
+
+    ngAfterViewInit() {
+        var clazz = this;
+        setTimeout(() => {
+            const tree = document.getElementsByTagName("p-tree")[0];
+            let srcMainJava = tree.getElementsByClassName("ui-tree-toggler fa fa-fw fa-caret-right")[0];
+
+            let event = new MouseEvent('click', {bubbles: true});
+            clazz.renderer.invokeElementMethod(srcMainJava, 'dispatchEvent', [event]);
+            
+            setTimeout(function () {
+                let comCompanyProject = tree.getElementsByClassName("ui-tree-toggler fa fa-fw fa-caret-right")[0];
+                clazz.renderer.invokeElementMethod(comCompanyProject, 'dispatchEvent', [event]);
+            }, 200);
+
+        }, 200);
+    }
+
 
     nodeSelect(event) {
         if (this.selectedNode.icon === FILE_CLASS) {

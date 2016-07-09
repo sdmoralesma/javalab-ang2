@@ -14,9 +14,9 @@
         <button pButton type="button" label="Run" data-icon="fa-play" (click)="displayDialog=true; runCode()"></button>
         <button pButton type="button" label="Tests" data-icon="fa-check-square-o" (click)="displayDialog=true; testCode()"></button>
         <button pButton type="button" label="Download" data-icon="fa-cloud-download" (click)="download()"></button>
-        <p-splitButton label="New" icon="fa-cloud-download" (onClick)="newWorkspace()" [url]="['java']">
-            <p-splitButtonItem icon="fa-file-archive-o" label="Jar" (onClick)="newWorkspace()" [url]="['scala']"></p-splitButtonItem>
-            <p-splitButtonItem icon="fa-file-archive-o" label="Zip" (onClick)="newWorkspace()" [url]="['groovy']"></p-splitButtonItem>
+        <p-splitButton label="New" icon="fa-cloud-download" (onClick)="newWorkspace()">
+            <p-splitButtonItem icon="fa-file-archive-o" label="Jar" (onClick)="newWorkspace()"></p-splitButtonItem>
+            <p-splitButtonItem icon="fa-file-archive-o" label="Zip" (onClick)="newWorkspace()"></p-splitButtonItem>
         </p-splitButton>
     </div>
 

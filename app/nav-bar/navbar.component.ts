@@ -1,7 +1,7 @@
 import {Component, EventEmitter, Output} from "@angular/core";
 import {AutoComplete, Button, Toolbar, Dialog, SplitButton, SplitButtonItem} from "primeng/primeng";
 import {FileNode} from "../common";
-import {ROUTER_DIRECTIVES} from "@angular/router";
+import {ROUTER_DIRECTIVES, Router} from "@angular/router";
 
 @Component({
     selector: 'nav-bar',
@@ -19,6 +19,9 @@ export class NavBarComponent {
     @Output() runCodeClicked = new EventEmitter();
     @Output() testCodeClicked = new EventEmitter();
     @Output() downloadClicked = new EventEmitter();
+
+    constructor(private router:Router) {
+    }
 
     search(event) {
         let query = event.query;
@@ -39,7 +42,7 @@ export class NavBarComponent {
     handleDropdownClick($event) {
         this.suggestions = [];
 
-        //mimic remote call
+        //won't work without this timeout
         setTimeout(() => {
             this.suggestions = this.options;
         }, 100);
@@ -57,7 +60,7 @@ export class NavBarComponent {
         this.downloadClicked.emit("");
     }
 
-    newWorkspace (){
-        alert("new");
+    newWorkspace() {
+        this.router.navigate(['/lang', 'scala']);
     }
 }

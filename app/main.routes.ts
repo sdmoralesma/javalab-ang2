@@ -1,9 +1,9 @@
 import {provideRouter, RouterConfig} from "@angular/router";
-import {LanguageComponent} from "./language.component";
+import {AppComponent} from "./app/app.component";
 
 export const routes:RouterConfig = [
-    {path: '/', component: LanguageComponent},
-    {path: '/:lang', component: LanguageComponent}
+    {path: '/', component: AppComponent},
+    {path: '/lang/:lang', component: AppComponent}
 ];
 
 export const APP_ROUTER_PROVIDERS = [
