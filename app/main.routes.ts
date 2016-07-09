@@ -3,7 +3,7 @@ import {AppComponent} from "./app/app.component";
 
 export const routes:RouterConfig = [
     {path: '/', component: AppComponent},
-    {path: '/lang/:lang', component: AppComponent}
+    {path: '/:lang', component: AppComponent}
 ];
 
 export const APP_ROUTER_PROVIDERS = [

@@ -1,7 +1,7 @@
 import {Component, EventEmitter, Output} from "@angular/core";
 import {AutoComplete, Button, Toolbar, Dialog, SplitButton, SplitButtonItem} from "primeng/primeng";
 import {FileNode} from "../common";
-import {ROUTER_DIRECTIVES, Router} from "@angular/router";
+import {ROUTER_DIRECTIVES, Router, ActivatedRoute} from "@angular/router";
 
 @Component({
     selector: 'nav-bar',
@@ -20,7 +20,7 @@ export class NavBarComponent {
     @Output() testCodeClicked = new EventEmitter();
     @Output() downloadClicked = new EventEmitter();
 
-    constructor(private router:Router) {
+    constructor(private router:Router, private route:ActivatedRoute) {
     }
 
     search(event) {
@@ -60,7 +60,12 @@ export class NavBarComponent {
         this.downloadClicked.emit("");
     }
 
-    newWorkspace() {
-        this.router.navigate(['/lang', 'scala']);
+    newWorkspace(lang:string) {
+        this.route.params.subscribe(params => {
+            let goTolang:string = params['lang'] == undefined ? 'java' : params['lang'];
+            console.log(goTolang);
+            this.router.navigateByUrl('/' + goTolang);
+        });
     }
+
 }
