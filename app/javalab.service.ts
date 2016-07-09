@@ -11,8 +11,8 @@ export class JavalabService {
     constructor(private http:Http) {
     }
 
-    initialize() {
-        let url = BASE + "/init/java";
+    initialize(lang:string) {
+        let url = BASE + "/init" + lang;
         return this.http.get(url)
             .toPromise()
             .then(res => res.json())
