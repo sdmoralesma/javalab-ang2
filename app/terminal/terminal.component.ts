@@ -1,4 +1,4 @@
-import {Component, ViewChild} from "@angular/core";
+import {Component} from "@angular/core";
 
 @Component({
     selector: 'terminal',
@@ -8,11 +8,8 @@ export class TerminalComponent {
     welcomeMessage:string;
     response:string;
 
-    @ViewChild('terminal_area') input;
-
     public addResponseToTerminal(response:string) {
-        this.response += "\n\njavalab $ " + response;
-        var element = this.input.nativeElement;
-        element.scrollTop = element.scrollHeight;
+        this.welcomeMessage = "";
+        this.response = "javalab $ " + response;
     }
 }
