@@ -33,16 +33,21 @@ export class FileManagerComponent implements AfterViewInit {
         setTimeout(() => {
             const tree = document.getElementsByTagName("p-tree")[0];
             let srcMainJava = tree.getElementsByClassName("ui-tree-toggler fa fa-fw fa-caret-right")[0];
+            let srcTestJava = tree.getElementsByClassName("ui-tree-toggler fa fa-fw fa-caret-right")[1];
 
             let event = new MouseEvent('click', {bubbles: true});
             clazz.renderer.invokeElementMethod(srcMainJava, 'dispatchEvent', [event]);
-            
+            clazz.renderer.invokeElementMethod(srcTestJava, 'dispatchEvent', [event]);
+
             setTimeout(function () {
-                let comCompanyProject = tree.getElementsByClassName("ui-tree-toggler fa fa-fw fa-caret-right")[0];
-                clazz.renderer.invokeElementMethod(comCompanyProject, 'dispatchEvent', [event]);
+                let mainComCompanyProject = tree.getElementsByClassName("ui-tree-toggler fa fa-fw fa-caret-right")[0];
+                let testComCompanyProject = tree.getElementsByClassName("ui-tree-toggler fa fa-fw fa-caret-right")[1];
+                clazz.renderer.invokeElementMethod(mainComCompanyProject, 'dispatchEvent', [event]);
+                clazz.renderer.invokeElementMethod(testComCompanyProject, 'dispatchEvent', [event]);
             }, 200);
 
         }, 200);
+
     }
 
 
