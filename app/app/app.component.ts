@@ -36,14 +36,14 @@ export class AppComponent implements OnInit, OnDestroy {
 
     errorMessage:any;
     model:GlobalModel;
-    private sub:any;
+    private routerSubscriber:any;
 
     constructor(private javalabService:JavalabService,
                 private route:ActivatedRoute) {
     }
 
     ngOnInit() {
-        this.sub = this.route.params.subscribe(params => {
+        this.routerSubscriber = this.route.params.subscribe(params => {
             let lang:string = params['lang'] == undefined ? '/java' : "/" + params['lang'];
             this.javalabService.initialize(lang)
                 .then(data => {
@@ -66,7 +66,7 @@ export class AppComponent implements OnInit, OnDestroy {
     }
 
     ngOnDestroy() {
-        this.sub.unsubscribe();
+        this.routerSubscriber.unsubscribe();
     }
 
     showFileContent(event) {
