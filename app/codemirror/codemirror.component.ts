@@ -1,7 +1,4 @@
-import {Component, ElementRef, AfterViewInit, Output, EventEmitter} from "@angular/core";
-
-const EDITOR_WIDTH = "75%";
-const EDITOR_HEIGHT = "595px";
+import {Component, ElementRef, AfterViewInit, Output, EventEmitter, ChangeDetectorRef} from "@angular/core";
 
 @Component({
     selector: 'codemirror',
@@ -9,15 +6,12 @@ const EDITOR_HEIGHT = "595px";
 })
 export class CodeMirrorComponent implements AfterViewInit {
 
-    height:number;
     editor:CodeMirror.Editor;
-    editorNativeElement:any;
     config:any;
 
     @Output() fileContentChanged = new EventEmitter();
 
-    constructor(elRef:ElementRef) {
-        this.editorNativeElement = elRef.nativeElement;
+    constructor(private elRef:ElementRef, private changeDetector:ChangeDetectorRef) {
     }
 
     ngAfterViewInit() {
@@ -26,21 +20,47 @@ export class CodeMirrorComponent implements AfterViewInit {
             lineNumbers: true,
             value: "default text; // if you are reading this there was a problem :("
         };
+        this.editor = CodeMirror(this.elRef.nativeElement, config);
 
-        this.editor = CodeMirror(this.editorNativeElement, config);
-        this.editor.setSize(EDITOR_WIDTH, EDITOR_HEIGHT);
+        console.log("window.innerHeight", window.innerHeight, "height", this.calculateHeight());
+        this.editor.setSize(this.calculateWidht(), this.calculateHeight());
+
         this.editor.setOption("matchbrackets", true);
         this.editor.on('change', (editor:CodeMirror.Editor) => {
             var content = this.editor.getDoc().getValue();
             this.fileContentChanged.emit({value: content})
         });
+
+        this.changeDetector.detectChanges();
     }
 
-    updateHeight(height:number) {
-        this.height = height;
+    private calculateHeight():number {
+        let innerHeight = window.innerHeight;
+        if (this.isSingleColumnMode()) {
+            return (innerHeight <= 640) ? 350 : innerHeight * 60 / 100;
+        } else {
+            return innerHeight * 66 / 100;
+        }
+    }
+
+    private calculateWidht():number {
+        let width = window.innerWidth;
+        if (width <= 600) {
+            return width * 0.77;
+        } else {
+            return width * 0.74;
+        }
+    }
+
+    private isSingleColumnMode():boolean {
+        return window.innerWidth <= 1024;
     }
 
     updateCode(newCode:string) {
         this.editor.setValue(newCode);
+    }
+
+    onResize(event) {
+        this.editor.setSize(this.calculateWidht(), this.calculateHeight());
     }
 }
