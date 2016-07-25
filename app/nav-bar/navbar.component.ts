@@ -63,7 +63,6 @@ export class NavBarComponent {
     newWorkspace(lang:string) {
         this.route.params.subscribe(params => {
             let goTolang:string = params['lang'] == undefined ? 'java' : params['lang'];
-            console.log(goTolang);
             this.router.navigateByUrl('/' + goTolang);
         });
     }

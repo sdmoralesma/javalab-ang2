@@ -21,10 +21,7 @@ export class CodeMirrorComponent implements AfterViewInit {
             value: "default text; // if you are reading this there was a problem :("
         };
         this.editor = CodeMirror(this.elRef.nativeElement, config);
-
-        console.log("window.innerHeight", window.innerHeight, "height", this.calculateHeight());
         this.editor.setSize(this.calculateWidht(), this.calculateHeight());
-
         this.editor.setOption("matchbrackets", true);
         this.editor.on('change', (editor:CodeMirror.Editor) => {
             var content = this.editor.getDoc().getValue();
