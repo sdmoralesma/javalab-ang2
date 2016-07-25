@@ -54,15 +54,12 @@ export class AppComponent implements OnInit, OnDestroy {
                         this.terminal.welcomeMessage = this.model.terminal;
                         this.tagsComponent.selectedTags = this.model.tags;
                         this.editor.config = this.model.config;
+                        this.initializeNavBar();
+                        this.initializeCentralPanel();
                     },
                     error => this.errorMessage = error
                 );
         });
-
-        setTimeout(() => {// hacky, I know :(
-            this.initializeNavBar();
-            this.initializeCentralPanel();
-        }, 300);
     }
 
     ngOnDestroy() {
