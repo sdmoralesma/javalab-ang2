@@ -10,7 +10,7 @@ rm -rf dist/ && mkdir dist/
 npm run mini
 
 # PrimeUI CSS dependencies
-mkdir -p dist/node_modules/primeui/themes/ && cp -R node_modules/primeui/themes/bootstrap/ "$_"
+mkdir -p dist/node_modules/primeui/themes/ && cp -R node_modules/primeui/themes/omega/ "$_"
 mkdir -p dist/node_modules/primeui/ && cp node_modules/primeui/primeui-ng-all.min.css "$_"
 
 # Load Angular libraries
