@@ -1,5 +1,7 @@
 // Defines interfaces that are common to all project
 
+import {TreeNode} from "primeng/primeng";
+
 export interface GlobalModel {
     description?:string;
     tags?:string[];
@@ -8,16 +10,9 @@ export interface GlobalModel {
     config:ConfigNode;
 }
 
-export interface FileNode {
+export interface FileNode extends TreeNode {
     id:string;
-    label?:string;
-    data?:any;
-    icon?:any;
-    expandedIcon?:any;
-    collapsedIcon?:any;
     parentId?:string;
-    children?:FileNode[];
-    leaf?:boolean;
 }
 
 export interface ConfigNode {
