@@ -6,13 +6,13 @@ import {Component, AfterViewInit, ChangeDetectorRef} from "@angular/core";
 })
 export class TerminalComponent implements AfterViewInit {
 
-    width:number;
-    height:number;
+    width: number;
+    height: number;
 
-    welcomeMessage:string;
-    response:string;
+    welcomeMessage: string;
+    response: string;
 
-    constructor(private changeDetector:ChangeDetectorRef) {
+    constructor(private changeDetector: ChangeDetectorRef) {
     }
 
     ngAfterViewInit() {
@@ -21,7 +21,7 @@ export class TerminalComponent implements AfterViewInit {
         this.changeDetector.detectChanges();
     }
 
-    public addResponseToTerminal(response:string) {
+    public addResponseToTerminal(response: string) {
         this.welcomeMessage = "";
         this.response = "javalab $ \n" + response;
     }
@@ -53,7 +53,7 @@ export class TerminalComponent implements AfterViewInit {
     }
 
 
-    private isSingleColumnMode():boolean {
+    private isSingleColumnMode(): boolean {
         return window.innerWidth <= 1024;
     }
 }

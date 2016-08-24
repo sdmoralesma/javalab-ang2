@@ -1,26 +1,24 @@
-import {Component, EventEmitter, Output} from "@angular/core";
-import {AutoComplete, Button, Toolbar, Dialog, SplitButton, SplitButtonItem} from "primeng/primeng";
+import {Component, EventEmitter, Output, OnInit} from "@angular/core";
 import {FileNode} from "../common";
-import {ROUTER_DIRECTIVES, Router, ActivatedRoute} from "@angular/router";
+import {Router, ActivatedRoute} from "@angular/router";
 
 @Component({
     selector: 'nav-bar',
     templateUrl: './app/nav-bar/nav-bar.html',
-    styleUrls: ['./app/nav-bar/nav-bar.css'],
-    directives: [AutoComplete, Toolbar, Button, Dialog, SplitButton, SplitButtonItem, ROUTER_DIRECTIVES]
+    styleUrls: ['./app/nav-bar/nav-bar.css']
 })
 export class NavBarComponent {
-    selected:FileNode;
-    suggestions:FileNode[];
-    options:FileNode[];
+    selected: FileNode;
+    suggestions: FileNode[];
+    options: FileNode[];
 
-    displayDialog:boolean = false;
+    displayDialog: boolean = false;
 
     @Output() runCodeClicked = new EventEmitter();
     @Output() testCodeClicked = new EventEmitter();
     @Output() downloadClicked = new EventEmitter();
 
-    constructor(private router:Router, private route:ActivatedRoute) {
+    constructor(private router: Router, private route: ActivatedRoute) {
     }
 
     search(event) {
@@ -28,8 +26,8 @@ export class NavBarComponent {
         this.suggestions = this.filterOptions(query, this.options);
     }
 
-    private filterOptions(query, options:FileNode[]):FileNode[] {
-        let filtered:any[] = [];
+    private filterOptions(query, options: FileNode[]): FileNode[] {
+        let filtered: any[] = [];
         for (let i = 0; i < options.length; i++) {
             let option = options[i];
             if (option.label.toLowerCase().indexOf(query.toLowerCase()) == 0) {
@@ -60,9 +58,9 @@ export class NavBarComponent {
         this.downloadClicked.emit("");
     }
 
-    newWorkspace(lang:string) {
+    newWorkspace(lang: string) {
         this.route.params.subscribe(params => {
-            let goTolang:string = params['lang'] == undefined ? 'java' : params['lang'];
+            let goTolang: string = params['lang'] == undefined ? 'java' : params['lang'];
             this.router.navigateByUrl('/' + goTolang);
         });
     }

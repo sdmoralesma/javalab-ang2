@@ -1,16 +1,18 @@
 var webpack = require("webpack");
+
 module.exports = {
-    entry: "./app/boot",
+    entry: {
+        'polyfills': './app/polyfills.js',
+        'vendor': './app/vendor.js',
+        'app': './app/boot.js'
+    },
     output: {
         path: __dirname,
-        filename: "./bundle.js"
+        filename: "./prod/[name].js"
     },
-    resolve: {
-        extensions: ['', '.js', '.ts']
-    },
-    module: {
-        loaders: [{
-            test: /\.ts/, loaders: ['ts-loader'], exclude: /node_modules/
-        }]
-    }
+    plugins: [
+        new webpack.optimize.CommonsChunkPlugin({
+            name: ['app', 'vendor', 'polyfills']
+        })
+    ]
 };

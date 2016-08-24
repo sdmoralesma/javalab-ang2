@@ -1,31 +1,29 @@
 import {Component, Output, EventEmitter, AfterViewInit, Renderer} from "@angular/core";
-import {Tree, Panel, Button, Toolbar, Dialog, InputText} from "primeng/primeng";
 import {UUID} from "./uuid";
 import {FileNode} from "../common";
 
-const FILE_CLASS:string = "fa-file-text-o";
+const FILE_CLASS: string = "fa-file-text-o";
 
 @Component({
     selector: 'filemanager',
-    templateUrl: './app/filemanager/filemanager.html',
-    directives: [Tree, Panel, Toolbar, Button, Dialog, InputText]
+    templateUrl: './app/filemanager/filemanager.html'
 })
 export class FileManagerComponent implements AfterViewInit {
 
     // dialog variables
-    displayNewFolder:boolean = false;
-    displayNewFile:boolean = false;
-    displayRename:boolean = false;
-    displayDelete:boolean = false;
-    newNodeName:string = "";
+    displayNewFolder: boolean = false;
+    displayNewFile: boolean = false;
+    displayRename: boolean = false;
+    displayDelete: boolean = false;
+    newNodeName: string = "";
 
     // file management
-    selectedNode:FileNode = null;
-    files:FileNode[];
+    selectedNode: FileNode = null;
+    files: FileNode[];
 
     @Output() fileSelected = new EventEmitter<any>();
 
-    constructor(private renderer:Renderer) {
+    constructor(private renderer: Renderer) {
     }
 
     ngAfterViewInit() {
@@ -58,7 +56,7 @@ export class FileManagerComponent implements AfterViewInit {
     }
 
     createFolder() {
-        var newFolder:FileNode = {
+        var newFolder: FileNode = {
             "id": this.generateId(),
             "label": this.newNodeName,
             "expandedIcon": "fa-folder-open",
@@ -81,7 +79,7 @@ export class FileManagerComponent implements AfterViewInit {
             return;
         }
 
-        var parentNode:FileNode = this.findNodeById(this.selectedNode.parentId, this.files);
+        var parentNode: FileNode = this.findNodeById(this.selectedNode.parentId, this.files);
         if (this.selectedNode.icon === FILE_CLASS) {
             newFolder.parentId = parentNode.id;
             parentNode.children.push(newFolder);
@@ -92,7 +90,7 @@ export class FileManagerComponent implements AfterViewInit {
     }
 
     createFile() {
-        var newFile:FileNode = {
+        var newFile: FileNode = {
             "id": this.generateId(),
             "label": this.newNodeName,
             "icon": "fa-file-text-o",
@@ -114,7 +112,7 @@ export class FileManagerComponent implements AfterViewInit {
             return;
         }
 
-        var parentNode:FileNode = this.findNodeById(this.selectedNode.parentId, this.files);
+        var parentNode: FileNode = this.findNodeById(this.selectedNode.parentId, this.files);
         if (this.selectedNode.icon === FILE_CLASS) {
             newFile.parentId = parentNode.id;
             parentNode.children.push(newFile);
@@ -124,7 +122,7 @@ export class FileManagerComponent implements AfterViewInit {
         }
     }
 
-    private findNodeById(id:string, tree:FileNode[]):FileNode {
+    private findNodeById(id: string, tree: FileNode[]): FileNode {
         for (var node of tree) {
             var found = this.searchNode(id, node);
             if (found !== null) {
@@ -133,7 +131,7 @@ export class FileManagerComponent implements AfterViewInit {
         }
     }
 
-    private searchNode(id:string, node:FileNode) {
+    private searchNode(id: string, node: FileNode) {
         if (node.id === id) {
             return node;
         } else if (node.children !== null && node.children !== undefined) {
@@ -161,7 +159,7 @@ export class FileManagerComponent implements AfterViewInit {
                 this.files.splice(index, 1);
             }
         } else {
-            var parentNode:FileNode = this.findNodeById(this.selectedNode.parentId, this.files);
+            var parentNode: FileNode = this.findNodeById(this.selectedNode.parentId, this.files);
             var index = parentNode.children.findIndex((child) => child.id === this.selectedNode.id);
             if (index > -1) {
                 parentNode.children.splice(index, 1);
