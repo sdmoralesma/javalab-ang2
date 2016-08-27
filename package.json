@@ -34,15 +34,10 @@
     "file-saver": "1.3.2"
   },
   "devDependencies": {
-    "@ngrx/devtools": "^1.4.0",
-    "@ngrx/store":"^1.5.0",
-    "source-map-loader": "^0.1.5",
-    "script-loader": "^0.6.1",
-    "ts-loader": "0.8.2",
     "typescript": "^1.8.10",
     "typings": "^1.3.0",
-    "webpack": "^1.13.1",
-    "webpack-dev-server": "^1.14.1",
+    "webpack": "^1.13.2",
+    "webpack-dev-server": "^1.15.0",
     "uglify-js": "2.6.4"
   }
 }
