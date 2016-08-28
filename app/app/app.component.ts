@@ -6,12 +6,12 @@ import {CodeMirrorComponent} from "../codemirror/codemirror.component";
 import {NavBarComponent} from "../nav-bar/navbar.component";
 import {TerminalComponent} from "../terminal/terminal.component";
 import {ActivatedRoute} from "@angular/router";
-import {JavalabService} from "../javalab.service";
+import {JavalabService} from "../services/javalab.service";
 import {GlobalModel} from "../common";
 
 @Component({
     selector: 'central-panel',
-    templateUrl: './app/app/app.html'
+    templateUrl: './app/app/app.component.html'
 })
 export class AppComponent implements OnInit, OnDestroy {
 

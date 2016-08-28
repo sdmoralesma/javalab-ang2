@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Output, OnInit} from "@angular/core";
-import {FileNode} from "../common";
+import {FileNode, MenuItem} from "../common";
 import {Router, ActivatedRoute} from "@angular/router";
 
 @Component({
@@ -7,10 +7,12 @@ import {Router, ActivatedRoute} from "@angular/router";
     templateUrl: './app/nav-bar/nav-bar.html',
     styleUrls: ['./app/nav-bar/nav-bar.css']
 })
-export class NavBarComponent {
+export class NavBarComponent implements OnInit {
     selected: FileNode;
     suggestions: FileNode[];
     options: FileNode[];
+
+    items: MenuItem[];
 
     displayDialog: boolean = false;
 
@@ -19,6 +21,14 @@ export class NavBarComponent {
     @Output() downloadClicked = new EventEmitter();
 
     constructor(private router: Router, private route: ActivatedRoute) {
+    }
+
+    ngOnInit(): void {
+        this.items = [
+            {label: 'Java', icon: 'fa-file-code-o', routerLink: '/#/java'},
+            {label: 'Scala', icon: 'fa-file-code-o', routerLink: '/#/scala'},
+            {label: 'Groovy', icon: 'fa-file-code-o', routerLink: '/#/groovy'}
+        ]
     }
 
     search(event) {
