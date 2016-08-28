@@ -8,10 +8,5 @@
 *.DS_Store
 
 node_modules/
-nbproject/
-npm-debug.log
 typings/
-dist/
-
-bundle.js
-bundle.min.js
+prod/
