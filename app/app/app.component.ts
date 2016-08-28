@@ -6,7 +6,7 @@ import {CodeMirrorComponent} from "../codemirror/codemirror.component";
 import {NavBarComponent} from "../nav-bar/navbar.component";
 import {TerminalComponent} from "../terminal/terminal.component";
 import {ActivatedRoute} from "@angular/router";
-import {JavalabService} from "../javalab.service";
+import {JavalabService} from "../services/javalab.service";
 import {GlobalModel} from "../common";
 
 @Component({
