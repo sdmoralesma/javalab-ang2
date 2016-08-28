@@ -1,7 +1,7 @@
 import {Injectable} from "@angular/core";
 import {Http, Headers, RequestOptions} from "@angular/http";
 import "rxjs/add/operator/toPromise";
-import {FileNode, GlobalModel} from "./common";
+import {FileNode, GlobalModel} from "../common";
 
 const BASE = "rest/process";
 
