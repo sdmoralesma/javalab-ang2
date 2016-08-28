@@ -10,7 +10,16 @@ export interface GlobalModel {
     config:ConfigNode;
 }
 
-export interface FileNode extends TreeNode {
+export interface FileNode {
+    // inherited
+    label?: string;
+    data?: any;
+    icon?: any;
+    expandedIcon?: any;
+    collapsedIcon?: any;
+    children?: FileNode[];
+    leaf?: boolean;
+    // new fields
     id:string;
     parentId?:string;
 }
