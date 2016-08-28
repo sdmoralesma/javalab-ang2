@@ -7,6 +7,10 @@ set -e -x
 # remove previous content
 rm -rf dist/ && mkdir dist/
 
+# change values for prod mode
+sed -i 's/http:\/\/localhost:48080\///' app/services/*.ts
+sed -i 's/\/\/enableProdMode/enableProdMode/' app/main.ts
+
 # create minified bundle
 webpack
 
@@ -32,7 +36,3 @@ rm -rf dist/dist/
 # copy assets files
 rm -rf dist/assets/
 cp -R assets/ dist/assets/
-
-# change string for prod mode
-sed -i 's/http:\/\/localhost:48080\///' prod/app.js
-sed -i 's/\/\/enableProdMode/enableProdMode/' prod/app.js
