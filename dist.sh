@@ -8,7 +8,7 @@ set -e -x
 rm -rf dist/ && mkdir dist/
 
 # create minified bundle
-npm run mini
+webpack
 
 # copy PrimeUI CSS dependencies
 mkdir -p dist/node_modules/primeui/themes/ && cp -R node_modules/primeui/themes/omega/ $_
@@ -29,6 +29,10 @@ cp -R prod/ dist/prod
 # remove duplicated dist folder
 rm -rf dist/dist/
 
-#copy assets files
+# copy assets files
 rm -rf dist/assets/
 cp -R assets/ dist/assets/
+
+# change string for prod mode
+sed -i 's/http:\/\/localhost:48080\///' prod/app.js
+sed -i 's/\/\/enableProdMode/enableProdMode/' prod/app.js
