@@ -10,7 +10,7 @@
     "webpack:w": "webpack -w",
     "webpack-dev-server": "webpack-dev-server",
     "start": "npm run tsc && npm run webpack-dev-server",
-    "mini": "webpack && uglifyjs ./bundle.js -c -m -o ./bundle.min.js"
+    "mini": "webpack --optimize-minimize"
   },
   "license": "ISC",
   "dependencies": {
@@ -37,7 +37,6 @@
     "typescript": "^1.8.10",
     "typings": "^1.3.0",
     "webpack": "^1.13.2",
-    "webpack-dev-server": "^1.15.0",
-    "uglify-js": "2.6.4"
+    "webpack-dev-server": "^1.15.0"
   }
 }
