@@ -1,5 +1,5 @@
 import {Component} from "@angular/core";
-import {TagService} from "../tag.service";
+import {TagService} from "../services/tag.service";
 
 @Component({
     selector: 'tags',
