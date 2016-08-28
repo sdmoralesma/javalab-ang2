@@ -11,7 +11,7 @@ import {GlobalModel} from "../common";
 
 @Component({
     selector: 'central-panel',
-    templateUrl: './app/app/app.html'
+    templateUrl: './app/app/app.component.html'
 })
 export class AppComponent implements OnInit, OnDestroy {
 
