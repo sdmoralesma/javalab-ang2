@@ -25,9 +25,9 @@ export class NavBarComponent implements OnInit {
 
     ngOnInit(): void {
         this.items = [
-            {label: 'Java', icon: 'fa-file-code-o', routerLink: '/#/java'},
-            {label: 'Scala', icon: 'fa-file-code-o', routerLink: '/#/scala'},
-            {label: 'Groovy', icon: 'fa-file-code-o', routerLink: '/#/groovy'}
+            {label: 'Java', icon: 'fa-file-code-o', routerLink: ['/java']},
+            {label: 'Scala', icon: 'fa-file-code-o', routerLink: ['/scala']},
+            {label: 'Groovy', icon: 'fa-file-code-o', routerLink: ['/groovy']}
         ]
     }
 
