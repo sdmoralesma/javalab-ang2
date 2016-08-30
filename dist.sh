@@ -6,6 +6,7 @@ set -e -x
 
 # remove previous content
 rm -rf dist/ && mkdir dist/
+rm -rf prod/ && mkdir prod/
 
 # change values for prod mode
 sed -i 's/http:\/\/localhost:48080\///' app/services/*.ts
