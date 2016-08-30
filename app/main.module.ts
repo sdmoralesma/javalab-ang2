@@ -67,7 +67,7 @@ import {MainComponent} from "./main.component";
 import {AppComponent} from "./app/app.component";
 import {JavalabService} from "./services/javalab.service";
 import {TagService} from "./services/tag.service";
-import {AppRoutes} from "./main.routes";
+import {routing, routingProviders} from "./main.routes";
 import {DescriptionComponent} from "./description/description.component";
 import {FileManagerComponent} from "./filemanager/filemanager.component";
 import {CodeMirrorComponent} from "./codemirror/codemirror.component";
@@ -77,7 +77,7 @@ import {TerminalComponent} from "./terminal/terminal.component";
 
 @NgModule({
     imports: [
-        AppRoutes,
+        routing,
         BrowserModule,
         InputTextModule,
         BrowserModule,
@@ -154,11 +154,12 @@ import {TerminalComponent} from "./terminal/terminal.component";
         NavBarComponent,
         TerminalComponent
     ],
-    bootstrap: [MainComponent],
     providers: [
+        routingProviders,
         TagService,
         JavalabService
-    ]
+    ],
+    bootstrap: [MainComponent]
 })
 export class MainModule {
 

@@ -21,9 +21,14 @@ export class TerminalComponent implements AfterViewInit {
         this.changeDetector.detectChanges();
     }
 
-    public addResponseToTerminal(response: string) {
+    public append(response: string) {
         this.welcomeMessage = "";
         this.response = "javalab $ \n" + response;
+    }
+
+    public replace(msg: string) {
+        this.welcomeMessage = "";
+        this.response = "javalab $ \n" + msg;
     }
 
     onResize(event) {

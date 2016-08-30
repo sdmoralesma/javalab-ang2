@@ -16,34 +16,34 @@ import {GlobalModel} from "../common";
 export class AppComponent implements OnInit, OnDestroy {
 
     @ViewChild(DescriptionComponent)
-    description:DescriptionComponent;
+    description: DescriptionComponent;
 
     @ViewChild(CodeMirrorComponent)
-    editor:CodeMirrorComponent;
+    editor: CodeMirrorComponent;
 
     @ViewChild(FileManagerComponent)
-    filemanager:FileManagerComponent;
+    filemanager: FileManagerComponent;
 
     @ViewChild(TagsComponent)
-    tagsComponent:TagsComponent;
+    tagsComponent: TagsComponent;
 
     @ViewChild(NavBarComponent)
-    navBar:NavBarComponent;
+    navBar: NavBarComponent;
 
     @ViewChild(TerminalComponent)
-    terminal:TerminalComponent;
+    terminal: TerminalComponent;
 
-    errorMessage:any;
-    model:GlobalModel;
-    private routerSubscriber:any;
+    errorMessage: any;
+    model: GlobalModel;
+    private routerSubscriber: any;
 
-    constructor(private javalabService:JavalabService,
-                private route:ActivatedRoute) {
+    constructor(private javalabService: JavalabService,
+                private route: ActivatedRoute) {
     }
 
     ngOnInit() {
         this.routerSubscriber = this.route.params.subscribe(params => {
-            let lang:string = params['lang'] == undefined ? '/java' : "/" + params['lang'];
+            let lang: string = params['lang'] == undefined ? '/java' : "/" + params['lang'];
             this.javalabService.initialize(lang)
                 .then(data => {
                         this.model = data;
@@ -93,9 +93,10 @@ export class AppComponent implements OnInit, OnDestroy {
     }
 
     runCode() {
+        this.terminal.replace("running ...");
         this.javalabService.runCode(this.model)
             .then(data => {
-                    this.terminal.addResponseToTerminal(data.output);
+                    this.terminal.append(data.output);
                     this.model.terminal = data.output;
                     this.navBar.displayDialog = false;
                 }, error => this.errorMessage = error
@@ -105,7 +106,7 @@ export class AppComponent implements OnInit, OnDestroy {
     testCode() {
         this.javalabService.testCode(this.model)
             .then(data => {
-                    this.terminal.addResponseToTerminal(data.output);
+                    this.terminal.append(data.output);
                     this.model.terminal = data.output;
                     this.navBar.displayDialog = false;
                 }, error => this.errorMessage = error
