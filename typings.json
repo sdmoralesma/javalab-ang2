@@ -1,7 +1,8 @@
 {
   "globalDependencies": {
-    "core-js": "registry:dt/core-js#0.0.0+20160602141332",
+    "core-js": "registry:dt/core-js#0.0.0+20160725163759",
     "jasmine": "registry:dt/jasmine#2.2.0+20160621224255",
+    "node": "registry:dt/node#6.0.0+20160831021119",
     "codemirror": "github:DefinitelyTyped/DefinitelyTyped/codemirror/codemirror.d.ts#0eb97d80348f04535ebc4c88fa2b60d8f61507f0",
     "filesaver": "github:DefinitelyTyped/DefinitelyTyped/FileSaver/FileSaver.d.ts#d21f1bd1fd079bbc18bc88ed71d2be7f5707e33a"
   }

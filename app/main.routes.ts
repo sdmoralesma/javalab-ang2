@@ -1,7 +1,7 @@
 import {Routes, RouterModule} from "@angular/router";
 import {AppComponent} from "./app/app.component";
 import {ModuleWithProviders} from "@angular/core";
-import {LocationStrategy,HashLocationStrategy} from '@angular/common';
+import {LocationStrategy, HashLocationStrategy} from "@angular/common";
 
 export const routes: Routes = [
     {path: ':lang', component: AppComponent},

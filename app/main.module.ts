@@ -77,9 +77,6 @@ import {TerminalComponent} from "./terminal/terminal.component";
 
 @NgModule({
     imports: [
-        routing,
-        BrowserModule,
-        InputTextModule,
         BrowserModule,
         FormsModule,
         ReactiveFormsModule,
@@ -142,7 +139,8 @@ import {TerminalComponent} from "./terminal/terminal.component";
         ToolbarModule,
         TooltipModule,
         TreeModule,
-        TreeTableModule
+        TreeTableModule,
+        routing,
     ],
     declarations: [
         MainComponent,
