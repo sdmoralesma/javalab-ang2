@@ -13,11 +13,12 @@ sed -i 's/http:\/\/localhost:48080\///' app/services/*.ts
 sed -i 's/\/\/enableProdMode/enableProdMode/' app/main.ts
 
 # create minified bundle
-webpack
+webpack #TODO: currently (sept/2016) minification is bugged.
 
-# copy PrimeUI CSS dependencies
-mkdir -p dist/node_modules/primeui/themes/ && cp -R node_modules/primeui/themes/omega/ $_
-mkdir -p dist/node_modules/primeui/ && cp node_modules/primeui/primeui-ng-all.min.css $_
+# copy PrimeNG CSS
+mkdir -p dist/node_modules/primeng/resources/themes && cp -R node_modules/primeng/resources/themes/omega/ $_
+mkdir -p dist/node_modules/primeng/resources/images && cp node_modules/primeng/resources/images/password-meter.png $_
+cp node_modules/primeng/resources/primeng.min.css dist/node_modules/primeng/resources
 
 # copy 3rd party libs
 mkdir -p dist/node_modules/codemirror/lib/ && cp node_modules/codemirror/lib/codemirror.js $_
