@@ -12,8 +12,8 @@ rm -rf prod/ && mkdir prod/
 sed -i 's/http:\/\/localhost:48080\///' app/services/*.ts
 sed -i 's/\/\/enableProdMode/enableProdMode/' app/main.ts
 
-# create minified bundle
-webpack #TODO: currently (sept/2016) minification is bugged.
+# create optimized bundles, configured on webpack.config.js
+webpack
 
 # copy PrimeNG CSS
 mkdir -p dist/node_modules/primeng/resources/themes && cp -R node_modules/primeng/resources/themes/omega/ $_
