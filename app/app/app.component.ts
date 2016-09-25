@@ -104,6 +104,7 @@ export class AppComponent implements OnInit, OnDestroy {
     }
 
     testCode() {
+        this.terminal.replace("testing ...");
         this.javalabService.testCode(this.model)
             .then(data => {
                     this.terminal.append(data.output);
