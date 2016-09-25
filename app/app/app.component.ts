@@ -55,6 +55,7 @@ export class AppComponent implements OnInit, OnDestroy {
                         this.editor.config = this.model.config;
                         this.initializeNavBar();
                         this.initializeCentralPanel();
+                        this.filemanager.expandAll();
                     },
                     error => this.errorMessage = error
                 );

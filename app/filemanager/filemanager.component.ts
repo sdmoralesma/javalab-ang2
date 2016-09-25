@@ -1,4 +1,4 @@
-import {Component, Output, EventEmitter, AfterViewInit, Renderer} from "@angular/core";
+import {Component, Output, EventEmitter} from "@angular/core";
 import {UUID} from "./uuid";
 import {FileNode} from "../common";
 
@@ -8,7 +8,7 @@ const FILE_CLASS: string = "fa-file-text-o";
     selector: 'filemanager',
     templateUrl: './app/filemanager/filemanager.html'
 })
-export class FileManagerComponent implements AfterViewInit {
+export class FileManagerComponent {
 
     // dialog variables
     displayNewFolder: boolean = false;
@@ -22,32 +22,6 @@ export class FileManagerComponent implements AfterViewInit {
     files: FileNode[];
 
     @Output() fileSelected = new EventEmitter<any>();
-
-    constructor(private renderer: Renderer) {
-    }
-
-    ngAfterViewInit() {
-        var clazz = this;
-        setTimeout(() => {
-            const tree = document.getElementsByTagName("p-tree")[0];
-            let srcMainJava = tree.getElementsByClassName("ui-tree-toggler fa fa-fw fa-caret-right")[0];
-            let srcTestJava = tree.getElementsByClassName("ui-tree-toggler fa fa-fw fa-caret-right")[1];
-
-            let event = new MouseEvent('click', {bubbles: true});
-            clazz.renderer.invokeElementMethod(srcMainJava, 'dispatchEvent', [event]);
-            clazz.renderer.invokeElementMethod(srcTestJava, 'dispatchEvent', [event]);
-
-            setTimeout(function () {
-                let mainComCompanyProject = tree.getElementsByClassName("ui-tree-toggler fa fa-fw fa-caret-right")[0];
-                let testComCompanyProject = tree.getElementsByClassName("ui-tree-toggler fa fa-fw fa-caret-right")[1];
-                clazz.renderer.invokeElementMethod(mainComCompanyProject, 'dispatchEvent', [event]);
-                clazz.renderer.invokeElementMethod(testComCompanyProject, 'dispatchEvent', [event]);
-            }, 200);
-
-        }, 200);
-
-    }
-
 
     nodeSelect(event) {
         if (this.selectedNode.icon === FILE_CLASS) {
@@ -166,4 +140,20 @@ export class FileManagerComponent implements AfterViewInit {
             }
         }
     }
+
+    expandAll() {
+        this.files.forEach(node => {
+            this.expandRecursive(node, true);
+        });
+    }
+
+    private expandRecursive(node: FileNode, isExpand: boolean) {
+        node.expanded = isExpand;
+        if (node.children) {
+            node.children.forEach(childNode => {
+                this.expandRecursive(childNode, isExpand);
+            });
+        }
+    }
+
 }

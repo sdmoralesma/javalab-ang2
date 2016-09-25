@@ -26,6 +26,7 @@ export interface FileNode {
     label?: string;
     data?: any;
     icon?: any;
+    expanded?: boolean;
     expandedIcon?: any;
     collapsedIcon?: any;
     children?: FileNode[];
